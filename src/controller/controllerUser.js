@@ -9,7 +9,7 @@ const controllerUsers = {
             const newUser = new modelUsuer({
                 name, 
                 email, 
-                rol, 
+                rol: rol || "user",
                 idCard,
                 password: passwordProtected, 
             });
