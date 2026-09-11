@@ -28,6 +28,20 @@ const controllerUsers = {
                 data:error,
             });
         }
+    },
+    readUsers: async(req,res)=>{
+        try {
+            const UsersFound = await modelUsuer.find();
+            res.json({
+                message: 'Usuarios encontrado exitosamente',
+                data: UsersFound,
+            })
+        } catch (error) {
+            res.json({
+                message:'Ocurrió un error al encontrar los usuarios',
+                data: error,
+            });
+        }
     }
 }
 

@@ -17,6 +17,7 @@ const schemaUser = new Schema({
 
     rol:{
         type: String,
+        default: 'admin',
         required: true,
         trim: true
     },
