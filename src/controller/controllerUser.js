@@ -29,6 +29,7 @@ const controllerUsers = {
             });
         }
     },
+    
     readUsers: async(req,res)=>{
         try {
             const UsersFound = await modelUsuer.find();
@@ -39,6 +40,25 @@ const controllerUsers = {
         } catch (error) {
             res.json({
                 message:'Ocurrió un error al encontrar los usuarios',
+                data: error,
+            });
+        }
+    },
+
+    readUserId: async(req, res)=>{
+        try {
+            const userFoundId = await modelUsuer.findById(
+                req.params.id
+            );
+            if(userFoundId._id){
+                res.json({
+                    message: 'Usuario encontrado',
+                    data: userFoundId,
+                });
+            }
+        } catch (error) {
+            res.json({
+                message: 'Ha ocurrido un error al encontrar el usuario',
                 data: error,
             });
         }
