@@ -20,7 +20,8 @@ const schemaUser = new Schema({
         enum: ["user", "admin"],
         default: 'user',
         required: false,
-        trim: true
+        trim: true,
+        set: v => v ? v.toLowerCase() : "user"
     },
 
     password:{
