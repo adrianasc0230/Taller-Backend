@@ -62,6 +62,26 @@ const controllerUsers = {
                 data: error,
             });
         }
+    },
+
+    deleteUser: async(req, res)=>{
+        try {
+            const deleteUser = await modelUsuer.findByIdAndDelete(req.params.id);
+            if(deleteUser._id){
+                res.json({
+                    message: `El usuario con el ID:${deleteUser._id} ha sido borrado`,
+                    data: null,
+
+                });
+            }
+        } catch (error) {
+            res.json({
+                message:`Ocurrió un error eliminando el usuario con el ID:${req.params.id}`,
+                data: error,
+            });
+
+            
+        }
     }
 }
 
