@@ -18,9 +18,11 @@ const controllerUsers = {
             const createUser = await newUser.save();
             if(createUser._id){
                 res.json({
-                    message:'Usuario creado exitosamente!',
+                    message:`Usuario creado exitosamente!con rol: ${createUser.rol}`,
                     data: createUser,
                 });
+
+
             }
         } catch (error) {
             res.json({
