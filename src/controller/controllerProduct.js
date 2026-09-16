@@ -36,6 +36,24 @@ const controllerProduct = {
                 data: error,
             });
         }
+    },
+    readProductById : async(req,res)=>{
+        try {
+            const productFoundById = await modelProduct.findById(req.params.id);
+            if(productFoundById._id){
+                res.json({
+                    message: `El Producto con el ID: ${productFoundById._id} fue encontrado`,
+                    data: productFoundById,
+                });
+            }
+        } catch (error) {
+            res.json({
+                message:`Ocurrió un error encontrando el producto con el ID:${req.params.id}`,
+                data: error,
+
+            });
+             
+        }
     }
 }
 export default controllerProduct;
