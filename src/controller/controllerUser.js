@@ -18,7 +18,7 @@ const controllerUsers = {
             const createUser = await newUser.save();
             if(createUser._id){
                 res.json({
-                    message:`Usuario creado exitosamente!con rol: ${createUser.rol}`,
+                    message:`Usuario creado exitosamente con el rol de: ${createUser.rol}`,
                     data: createUser,
                 });
 
@@ -36,7 +36,7 @@ const controllerUsers = {
         try {
             const UsersFound = await modelUsuer.find();
             res.json({
-                message: 'Usuarios encontrado exitosamente',
+                message: 'Usuarios encontrados exitosamente',
                 data: UsersFound,
             })
         } catch (error) {
@@ -101,7 +101,7 @@ const controllerUsers = {
 
             if(userToUpdate._id){
                 res.json({
-                    message: 'Usuaario actualizado exitosamente',
+                    message: 'Usuario actualizado exitosamente',
                     data: userToUpdate,
                 });
             }
