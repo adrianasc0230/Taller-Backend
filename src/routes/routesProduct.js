@@ -4,5 +4,6 @@ import { uploadSingleImage } from "../middleware/uploadImage.js";
 
 const routerProduct = Router ();
 routerProduct.post('/', controllerProduct.productCreate);
+routerProduct.get('/:id', controllerProduct.readProductById);
 
 export default routerProduct;
