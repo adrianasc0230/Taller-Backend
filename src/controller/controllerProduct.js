@@ -54,6 +54,21 @@ const controllerProduct = {
             });
              
         }
+    },
+    readProducts: async(req,res)=>{
+        try {
+            const productsFound= await modelProduct.find();
+            res.json({
+                message: 'Productos encontrados exitosamente',
+                data: productsFound,
+            });
+        } catch (error) {
+            res.json({
+                message:'No se pudo encontrar los productos',
+                data: error,
+            });
+            
+        }
     }
 }
 export default controllerProduct;
