@@ -6,5 +6,6 @@ const routerProduct = Router ();
 routerProduct.post('/', controllerProduct.productCreate);
 routerProduct.get('/:id', controllerProduct.readProductById);
 routerProduct.get('/',controllerProduct.readProducts);
+routerProduct.put('/:id', uploadSingleImage, controllerProduct.productUpdate);
 
 export default routerProduct;

@@ -55,6 +55,7 @@ const controllerProduct = {
              
         }
     },
+
     readProducts: async(req,res)=>{
         try {
             const productsFound= await modelProduct.find();
@@ -69,6 +70,64 @@ const controllerProduct = {
             });
             
         }
-    }
+    },
+
+    productUpdate: async ( req, res) => {
+        try {
+            const { id } = req.params;
+
+            const existingProduct = await modelProduct.findById(id);
+            if (!existingProduct) {
+                if (req.file) {
+                    fs.unlinkSync(req.file.path);
+                }
+
+                return res.json({
+                    message: 'Producto no encontrado',
+                    data: null,
+                });
+            }
+
+            if ( req.file){
+                if(existingProduct.images) {
+                    const oldImagesPath = path.join('images', existingProduct.images);
+
+                    if (fs.existsSync(oldImagesPath)) {
+                        fs.unlinkSync(oldImagesPath);
+                    }
+                }
+            }
+
+            const newData = {
+                product: req.body.product, 
+                category: req.body.category,
+                description: req.body.description,
+                price: req.body.price,
+                rating: req.body.rating,
+                numberOfReviews: req.body.numberOfReviews,  
+                images: req.file ? req.filename : existingProduct.images,
+                stock: req.body.stock
+            };
+
+            const updatedProduct = await modelProduct.findByIdAndUpdate(
+                id,
+                newData,
+                { new : true}
+            );
+
+            return res.json({
+                message: 'Producto actualizado exitosamente.',
+                data: updatedProduct,
+            });
+
+        } catch (error) {
+            res.json({
+                message: 'Ocurrio un error al actualizar el producto.',
+                data: error.message || error,
+            });
+        }
+    },
 }
+
+
 export default controllerProduct;
