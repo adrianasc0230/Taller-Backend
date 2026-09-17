@@ -1,6 +1,7 @@
 import { uploadSingleImage } from "../middleware/uploadImage.js";
 import modelProduct from "../models/modelProduct.js";
 import fs from "fs";
+import path from "path";
 
 const controllerProduct = {
     productCreate: async (req , res)=>{
@@ -127,6 +128,35 @@ const controllerProduct = {
             });
         }
     },
+    productDelete : async (req, res)=> {
+        try {
+            const productDelete = await modelProduct.findByIdAndDelete(req.params.id);
+
+            if(!productDelete){
+            return res.json({
+                    message:'producto no encontrado',
+                    data:null,
+                });
+            }
+            if(productDelete.images){
+                const oldImages = path.join('imagenes',productDelete.images);
+                
+                if(fs.existsSync(oldImages)){
+                    fs.unlinkSync(oldImages);
+                }
+            }
+            res.json({
+                message:'producto eliminado exitosamente',
+                data: productDelete._id,
+            });
+        } catch (error) {
+            console.log(error);
+            res.json({
+                message:'error al eliminar el producto',
+                data: error,
+            });
+        }
+    }
 }
 
 
