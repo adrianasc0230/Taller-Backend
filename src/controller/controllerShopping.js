@@ -12,9 +12,9 @@ const controllerShopping = {
             });
 
             const createShopping = await newShopping.save();
-            if (controllerShopping._id) {
+            if (createShopping._id) {
                 res.json({
-                    message: `Compra creada exitosamente por un valor de: ${createShopping.totalShopping} su metodo de pago es: ${controllerShopping.paymentMethod}`,
+                    message: `Compra creada exitosamente por un valor de: ${createShopping.totalShopping} su metodo de pago es: ${createShopping.paymentMethod}`,
                     data: createShopping._id,
                 });
             }
