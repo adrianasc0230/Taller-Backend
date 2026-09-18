@@ -38,8 +38,8 @@ const schemaShopping = new Schema({
         trim: true,
         enum: {
             values: ['Aprobada', 'Entregada', 'Rechazada','Cancelada' ],
-            message: "Estado de compra no valido"
-        }
+            message: "Estado de compra no valido",},
+        default: 'Aprobada'
         
     }
    
