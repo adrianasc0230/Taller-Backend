@@ -147,7 +147,7 @@ const controllerProduct = {
             }
             res.json({
                 message:'producto eliminado exitosamente',
-                data: productDelete._id,
+                data: productDelete,
             });
         } catch (error) {
             console.log(error);

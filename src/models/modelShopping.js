@@ -30,6 +30,17 @@ const schemaShopping = new Schema({
         type: Number,
         required: true,
         min: [0.01, "El valor debe ser mayor a 0"]
+    }, 
+
+    status:{
+        type: String,
+        required: true,
+        trim: true,
+        enum: {
+            values: ['Aprobada', 'Entregada', 'Rechazada','Cancelada' ],
+            message: "Estado de compra no valido"
+        }
+        
     }
    
 });
