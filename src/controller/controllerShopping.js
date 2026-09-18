@@ -58,6 +58,31 @@ console.log(newShopping);
                 data: error,
             });
         }
+    },
+    updateShopping: async(req,res)=>{
+        try {
+            const {status}=req.body;
+            const shoppingUpdated = await modelShopping.findByIdAndUpdate(req.params.id,
+                {status},
+                {new: true, runValidators:true}
+            );
+            if(!shoppingUpdated){
+                return res.json({
+                    message:'Compra no encontrada',
+                    data: null,
+                });
+            }
+            return res.json({
+                message:'Estado de la compra actualizado exitosamente',
+                data: shoppingUpdated,
+            });
+        } catch (error) {
+            console.log(error);
+            res.json({
+                message:'Ocurrió un error actualizando el estado de la compra',
+                data:error,
+            });
+        }
     }
 
 
