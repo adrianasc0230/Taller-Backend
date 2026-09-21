@@ -1,19 +1,54 @@
 import modelShopping from "../models/modelShopping.js";
+import controllerProduct from "../controller/controllerProduct.js"
+import modelProduct from "../models/modelProduct.js";
 
 const controllerShopping = {
     createShopping: async (req, res) =>{
         try {
-            const { email, paymentMethod, addres, totalShopping, status} = req.body;
+            const { email, paymentMethod, addres, status, products} = req.body;
+            
+
+var totalShoppingAux = 0;
+            for(let i=0; i< products.length;i++){
+                 
+                
+                try {
+                            const productFoundById = await modelProduct.findById(products[i]);
+                            if(productFoundById.stock >0){
+                                console.log(productFoundById);
+                                totalShoppingAux = productFoundById.price + totalShoppingAux;
+                            }else{
+                                res.json({
+                                message:`No hay stock de: ${productFoundById.product}`,
+                                data: null,
+                
+                            });
+                            }
+                        } catch (error) {
+                            res.json({
+                                message:`Ocurrió un error con un producto de la compra, ID: ${products[i]}`,
+                                data: null,
+                
+                            });
+                             
+                        }
+
+            }
+            console.log(totalShoppingAux);
             const newShopping = new modelShopping({
                 email, 
                 paymentMethod, 
                 addres, 
-                totalShopping,
-                status
+                totalShopping: totalShoppingAux,
+                status,
+                products
             });
-console.log(newShopping);
+            console.log(newShopping);
             const createShopping = await newShopping.save();
+
+
             if (createShopping._id) {
+                
                 res.json({
                     message: `Compra creada exitosamente por un valor de: ${createShopping.totalShopping} su metodo de pago es: ${createShopping.paymentMethod}`,
                     data: createShopping._id,

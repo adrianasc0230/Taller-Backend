@@ -5,7 +5,7 @@ const schemaShopping = new Schema({
         type: String,
         required: true,
         trim: true,
-        match: [/^[a-zA-Z0-9._%+-]+@[a-zA-Z0-9.-]+\.[a-zA-Z]{2,8}$/, "Email invalido "]
+        match: [/^[a-zA-Z0-9._%+-]+@[a-zA-Z0-9.-]+\.[a-zA-Z]{2,8}$/, "Email invalido "],
     }, 
 
     paymentMethod:{
@@ -40,6 +40,18 @@ const schemaShopping = new Schema({
             values: ['Aprobada', 'Entregada', 'Rechazada','Cancelada' ],
             message: "Estado de compra no valido",},
         default: 'Aprobada'
+        
+    },
+    products:{
+        type: Array,
+        required: true,
+        trim: true,
+        validate: {
+            validator: function(value) {
+                return Array.isArray(value) && value.length > 0;
+            },
+            message: "Debe incluir al menos un producto para generar la compra (ID del producto)"
+        }
         
     }
    
