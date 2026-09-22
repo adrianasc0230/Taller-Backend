@@ -3,8 +3,11 @@ import modelProduct from "../models/modelProduct.js";
 import fs from "fs";
 import path from "path";
 
+import {generarToken, validarToken} from "../ayudas/funciones.js";
+
 const controllerProduct = {
     productCreate: async (req , res)=>{
+        
         try {
             uploadSingleImage(req,res, async(error)=>{
                 if(error){
@@ -14,6 +17,16 @@ const controllerProduct = {
                         data:error,
                     });
                 }
+                console.log(req);
+        const decodificado = await validarToken(req.body.token);
+            if(decodificado.rol != 'admin')
+            {
+                res.json({
+                                message:`Rol no valido para operación`,
+                                data: null,
+                
+                            });
+            }
                 const newProduct = new modelProduct({
                     product: req.body.product, 
                     category: req.body.category,
@@ -76,6 +89,15 @@ const controllerProduct = {
     productUpdate: async ( req, res) => {
         try {
             const { id } = req.params;
+            const decodificado = await validarToken(req.body.token);
+            if(decodificado.rol != 'admin')
+            {
+                res.json({
+                                message:`Rol no valido para operación`,
+                                data: null,
+                
+                            });
+            }
 
             const existingProduct = await modelProduct.findById(id);
             if (!existingProduct) {
@@ -130,6 +152,16 @@ const controllerProduct = {
     },
     productDelete : async (req, res)=> {
         try {
+            console.error(req);
+            const decodificado = await validarToken(req.params.token);
+            if(decodificado.rol != 'admin')
+            {
+                res.json({
+                                message:`Rol no valido para operación`,
+                                data: null,
+                
+                            });
+            }
             const productDelete = await modelProduct.findByIdAndDelete(req.params.id);
 
             if(!productDelete){
