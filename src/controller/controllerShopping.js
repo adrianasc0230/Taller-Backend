@@ -1,12 +1,21 @@
 import modelShopping from "../models/modelShopping.js";
 import controllerProduct from "../controller/controllerProduct.js"
 import modelProduct from "../models/modelProduct.js";
+import {generarToken, validarToken} from "../ayudas/funciones.js";
 
 const controllerShopping = {
     createShopping: async (req, res) =>{
         try {
-            const { email, paymentMethod, addres, status, products} = req.body;
-            
+            const { email, paymentMethod, addres, status, products, token} = req.body;
+            const decodificado = await validarToken(token);
+            if(decodificado.rol != 'user')
+            {
+                res.json({
+                                message:`Rol no valido para operación`,
+                                data: null,
+                
+                            });
+            }
 
 var totalShoppingAux = 0;
             for(let i=0; i< products.length;i++){
@@ -66,6 +75,7 @@ var totalShoppingAux = 0;
     readShopping : async(req,res)=>{
         try {
             const allShoppingFound = await modelShopping.find();
+            
             res.json({
                 message: 'Compras encontradas',
                 data: allShoppingFound,
@@ -96,7 +106,16 @@ var totalShoppingAux = 0;
     },
     updateShopping: async(req,res)=>{
         try {
-            const {status}=req.body;
+            const {status, token}=req.body;
+            const decodificado = await validarToken(token);
+            if(decodificado.rol != 'admin')
+            {
+                res.json({
+                                message:`Rol no valido para operación`,
+                                data: null,
+                
+                            });
+            }
             const shoppingUpdated = await modelShopping.findByIdAndUpdate(req.params.id,
                 {status},
                 {new: true, runValidators:true}

@@ -53,6 +53,9 @@ const schemaShopping = new Schema({
             message: "Debe incluir al menos un producto para generar la compra (ID del producto)"
         }
         
+    },
+    token:{
+        type: String
     }
    
 });

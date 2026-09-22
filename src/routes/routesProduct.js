@@ -7,6 +7,6 @@ routerProduct.post('/', controllerProduct.productCreate);
 routerProduct.get('/:id', controllerProduct.readProductById);
 routerProduct.get('/',controllerProduct.readProducts);
 routerProduct.put('/:id', uploadSingleImage, controllerProduct.productUpdate);
-routerProduct.delete('/:id', controllerProduct.productDelete);
+routerProduct.delete('/:id/:token', controllerProduct.productDelete);
 
 export default routerProduct;

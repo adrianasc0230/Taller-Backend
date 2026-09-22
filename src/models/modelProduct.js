@@ -48,6 +48,10 @@ const schemaProduct = new Schema({
         type: Number,
         required: true,
         trim: true
+    },
+
+    token:{
+        type: String
     }
 });
 
