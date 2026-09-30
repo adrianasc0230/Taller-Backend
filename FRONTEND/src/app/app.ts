@@ -1,7 +1,7 @@
 import { Component, signal } from '@angular/core';
 import { RouterOutlet } from '@angular/router';
 import { Nav } from './components/nav/nav';
-import { Footer } from './componets/footer/footer';
+import { Footer } from './components/footer/footer';
 
 @Component({
   imports: [RouterOutlet, Nav, Footer],
