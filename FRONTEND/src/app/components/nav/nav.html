@@ -1,1 +1,42 @@
-<p>nav works!</p>
+<nav class="navbar navbar-expand-lg bg-body-tertiary">
+  <div class="container-fluid">
+    
+    <!-- 1. Logo / Marca -->
+    <a class="navbar-brand" href="#">Agroanima</a>
+    
+    <!-- 2. Botón menú hamburguesa (Para móviles) -->
+    <button class="navbar-toggler" type="button" data-bs-toggle="collapse" data-bs-target="#navbarNavAltMarkup" aria-controls="navbarNavAltMarkup" aria-expanded="false" aria-label="Toggle navigation">
+      <span class="navbar-toggler-icon"></span>
+    </button>
+    
+    <!-- 3. Contenido colapsable del Navbar -->
+    <div class="collapse navbar-collapse" id="navbarNavAltMarkup">
+      
+      <!-- Enlaces de navegación (me-auto los empuja a la izquierda) -->
+      <div class="navbar-nav me-auto mb-2 mb-lg-0">
+        <a class="nav-link active" aria-current="page" routerLink="/home">Home</a>
+        <a class="nav-link" routerLink="/products">Catálogo</a>
+        <a class="nav-link" routerLink="/footer">Contacto</a>
+      </div>
+
+      <!-- 4. Contenedor del Buscador y Usuario (A la derecha) -->
+      <div class="d-flex align-items-center gap-3">
+        
+        <!-- Formulario de búsqueda con Lupa -->
+        <form class="d-flex m-0" role="search">
+          <input class="form-control me-2" type="search" placeholder="Buscar productos" aria-label="Search"/>
+          <button class="btn btn-outline-success d-flex align-items-center justify-content-center" type="submit" title="Buscar">
+            <i class="bi bi-search"></i> <!-- Icono de Lupa -->
+          </button>
+        </form>
+
+        <!-- Icono de Usuario -->
+        <a routerLink="/login" class="text-secondary d-flex align-items-center" style="font-size: 1.5rem; text-decoration: none;" title="Mi Perfil">
+          <i class="bi bi-person-circle"></i> <!-- Icono de Usuario -->
+        </a>
+        
+      </div>
+      
+    </div>
+  </div>
+</nav>
