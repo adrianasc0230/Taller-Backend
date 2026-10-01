@@ -1,0 +1,18 @@
+.ilustracion-404 {
+  width: 400%;
+  max-width: 800px;
+  margin: 0 auto;
+  display: flex;
+  justify-content: center; /* Centra horizontalmente */
+  align-items: center;     /* Centra verticalmente (opcional) */
+  height: 100vh;
+}
+
+.ilustracion-404 svg {
+  width: 400%;
+  height: auto;
+  display: block;
+  filter: drop-shadow(0 8px 16px rgba(0, 0, 0, 0.15));
+  
+  
+}
