@@ -1,1 +1,383 @@
-<p>home works!</p>
+
+<!-- Inicio carrusel -->
+<div id="carouselExampleIndicators" class="carousel slide">
+  <div class="carousel-indicators">
+    <button type="button" data-bs-target="#carouselExampleIndicators" data-bs-slide-to="0" class="active" aria-current="true" aria-label="Slide 1"></button>
+    <button type="button" data-bs-target="#carouselExampleIndicators" data-bs-slide-to="1" aria-label="Slide 2"></button>
+    <button type="button" data-bs-target="#carouselExampleIndicators" data-bs-slide-to="2" aria-label="Slide 3"></button>
+  </div>
+  <div class="carousel-inner">
+  
+      <div class="carousel-item active">
+  <div class="hero">
+    <svg class="hero-fondo" viewBox="0 0 1200 500" preserveAspectRatio="xMidYMid slice" aria-hidden="true">
+      <defs>
+        <linearGradient id="cielo" x1="0" y1="0" x2="0" y2="1">
+          <stop offset="0" stop-color="#7fa3c7"/>
+          <stop offset="1" stop-color="#d9e4d0"/>
+        </linearGradient>
+        <linearGradient id="pasto" x1="0" y1="0" x2="0" y2="1">
+          <stop offset="0" stop-color="#5f9a2f"/>
+          <stop offset="1" stop-color="#2f5d1a"/>
+        </linearGradient>
+      </defs>
+
+      <rect width="1200" height="500" fill="url(#cielo)"/>
+
+      <!-- montañas lejanas y cercanas -->
+      <path d="M0 250 Q150 170 300 220 T600 200 T900 170 T1200 210 V500 H0Z" fill="#4f6b45"/>
+      <path d="M0 300 Q200 230 400 280 T800 260 T1200 290 V500 H0Z" fill="#3f7a35"/>
+
+      <!-- pasto -->
+      <path d="M0 340 Q300 310 600 335 T1200 320 V500 H0Z" fill="url(#pasto)"/>
+
+      <!-- palmas -->
+      <g fill="#2d4a22" stroke="#2d4a22">
+        <path d="M70 330 Q75 250 62 170" stroke-width="7" fill="none" stroke="#5a4a32"/>
+        <ellipse cx="62" cy="168" rx="46" ry="10" transform="rotate(-20 62 168)"/>
+        <ellipse cx="62" cy="168" rx="46" ry="10" transform="rotate(25 62 168)"/>
+        <ellipse cx="62" cy="168" rx="40" ry="9" transform="rotate(75 62 168)"/>
+
+        <path d="M300 320 Q305 270 298 220" stroke-width="6" fill="none" stroke="#5a4a32"/>
+        <ellipse cx="298" cy="218" rx="38" ry="9" transform="rotate(-20 298 218)"/>
+        <ellipse cx="298" cy="218" rx="38" ry="9" transform="rotate(25 298 218)"/>
+        <ellipse cx="298" cy="218" rx="34" ry="8" transform="rotate(80 298 218)"/>
+      </g>
+
+      <!-- vaca (estilizada) -->
+      <g>
+        <ellipse cx="200" cy="330" rx="95" ry="52" fill="#fff"/>
+        <ellipse cx="170" cy="322" rx="38" ry="26" fill="#a5501f"/>
+        <ellipse cx="235" cy="345" rx="26" ry="18" fill="#a5501f"/>
+        <ellipse cx="290" cy="300" rx="34" ry="28" fill="#fff"/>
+        <ellipse cx="300" cy="292" rx="18" ry="18" fill="#a5501f"/>
+        <rect x="140" y="365" width="14" height="50" fill="#fff"/>
+        <rect x="230" y="365" width="14" height="50" fill="#fff"/>
+      </g>
+
+      <!-- campesino (silueta simple) -->
+      <g>
+        <ellipse cx="385" cy="215" rx="40" ry="8" fill="#c9a66b"/>
+        <circle cx="385" cy="240" r="17" fill="#c58a5a"/>
+        <rect x="358" y="258" width="54" height="80" rx="10" fill="#4f78a8"/>
+        <rect x="362" y="338" width="20" height="100" fill="#8b7a5a"/>
+        <rect x="388" y="338" width="20" height="100" fill="#8b7a5a"/>
+      </g>
+    </svg>
+
+    <div class="hero-oscuro"></div>
+
+    <div class="hero-contenido">
+      <span class="hero-insignia">LÍDERES EN COLOMBIA</span>
+      <h1 class="hero-titulo">Soluciones integrales para el agro colombiano</h1>
+      <p class="hero-texto">
+        Liderando la innovación en nutrición, salud y tecnología animal y agrícola.
+        Calidad respaldada por expertos.
+      </p>
+      <a class="hero-boton" routerLink="/products">EXPLORAR PRODUCTOS</a>
+  </div>
+</div>
+    </div>
+    <!-- Slide 2: fertilización -->
+<div class="carousel-item">
+  <div class="hero">
+    <svg class="hero-fondo" viewBox="0 0 1200 500" preserveAspectRatio="xMidYMid slice" aria-hidden="true">
+      <defs>
+        <linearGradient id="cielo-fert" x1="0" y1="0" x2="0" y2="1">
+          <stop offset="0" stop-color="#8fbce6"/>
+          <stop offset="1" stop-color="#f6ecc8"/>
+        </linearGradient>
+        <linearGradient id="tierra-fert" x1="0" y1="0" x2="0" y2="1">
+          <stop offset="0" stop-color="#7a5230"/>
+          <stop offset="1" stop-color="#3e2a17"/>
+        </linearGradient>
+        <g id="brote-fert">
+          <path d="M0 0 Q2 -14 0 -26" stroke="#2f7d32" stroke-width="3" fill="none"/>
+          <ellipse cx="-9" cy="-22" rx="10" ry="4.5" fill="#4caf50" transform="rotate(-30 -9 -22)"/>
+          <ellipse cx="9" cy="-26" rx="10" ry="4.5" fill="#66bb6a" transform="rotate(30 9 -26)"/>
+        </g>
+      </defs>
+
+      <rect width="1200" height="500" fill="url(#cielo-fert)"/>
+
+      <!-- sol -->
+      <circle cx="140" cy="85" r="42" fill="#ffd54f"/>
+      <circle cx="140" cy="85" r="60" fill="#ffd54f" opacity=".25"/>
+
+      <!-- lomas -->
+      <path d="M0 270 Q200 200 420 255 T800 235 T1200 260 V500 H0Z" fill="#6f9a4a"/>
+      <path d="M0 305 Q250 255 500 295 T1000 280 T1200 300 V500 H0Z" fill="#4f7d35"/>
+
+      <!-- tierra y surcos -->
+      <rect y="330" width="1200" height="170" fill="url(#tierra-fert)"/>
+      <g stroke="#2a1a0c" stroke-width="5" fill="none" opacity=".45">
+        <path d="M0 365 Q600 350 1200 365"/>
+        <path d="M0 408 Q600 392 1200 408"/>
+        <path d="M0 455 Q600 438 1200 455"/>
+      </g>
+
+      <!-- brotes -->
+      <g>
+        <use href="#brote-fert" x="470" y="365"/>
+        <use href="#brote-fert" x="540" y="362"/>
+        <use href="#brote-fert" x="610" y="360"/>
+        <use href="#brote-fert" x="680" y="360"/>
+        <use href="#brote-fert" x="430" y="408"/>
+        <use href="#brote-fert" x="510" y="405"/>
+        <use href="#brote-fert" x="590" y="403"/>
+        <use href="#brote-fert" x="670" y="402"/>
+        <use href="#brote-fert" x="740" y="402"/>
+        <use href="#brote-fert" x="380" y="455"/>
+        <use href="#brote-fert" x="470" y="452"/>
+        <use href="#brote-fert" x="560" y="450"/>
+        <use href="#brote-fert" x="650" y="449"/>
+        <use href="#brote-fert" x="740" y="449"/>
+      </g>
+
+      <!-- saco de fertilizante -->
+      <g transform="rotate(-18 150 400)">
+        <path d="M95 320 L205 320 L218 440 L82 440 Z" fill="#c9a06a"/>
+        <path d="M95 320 Q150 336 205 320 L202 306 Q150 322 98 306 Z" fill="#b48a55"/>
+        <rect x="104" y="350" width="92" height="66" rx="5" fill="#f4f1e6"/>
+        <path d="M136 368 Q150 346 164 368 Q150 380 136 368Z" fill="#3f7a35"/>
+        <text x="150" y="392" text-anchor="middle" font-family="Arial, sans-serif" font-size="14" font-weight="800" fill="#2f5d1a">NPK</text>
+        <text x="150" y="406" text-anchor="middle" font-family="Arial, sans-serif" font-size="8" fill="#2f5d1a">ORGÁNICO</text>
+      </g>
+
+      <!-- gránulos cayendo del saco -->
+      <g fill="#c58a4a">
+        <circle cx="230" cy="432" r="3.5"/><circle cx="246" cy="442" r="3"/>
+        <circle cx="262" cy="448" r="3.5"/><circle cx="214" cy="444" r="3"/>
+        <circle cx="280" cy="452" r="3"/>
+      </g>
+
+      <!-- campesino esparciendo -->
+      <g>
+        <ellipse cx="380" cy="228" rx="42" ry="8" fill="#c9a66b"/>
+        <path d="M358 228 Q380 200 402 228Z" fill="#d9b97a"/>
+        <circle cx="380" cy="252" r="17" fill="#c58a5a"/>
+        <rect x="352" y="270" width="56" height="84" rx="10" fill="#4f78a8"/>
+        <path d="M352 286 Q318 300 296 330" stroke="#4f78a8" stroke-width="15" fill="none" stroke-linecap="round"/>
+        <circle cx="292" cy="336" r="9" fill="#c58a5a"/>
+        <path d="M408 286 Q425 315 418 345" stroke="#4f78a8" stroke-width="15" fill="none" stroke-linecap="round"/>
+        <rect x="356" y="350" width="22" height="100" fill="#8b7a5a"/>
+        <rect x="384" y="350" width="22" height="100" fill="#8b7a5a"/>
+        <rect x="350" y="444" width="32" height="14" rx="5" fill="#2f3a2a"/>
+        <rect x="380" y="444" width="32" height="14" rx="5" fill="#2f3a2a"/>
+      </g>
+
+      <!-- gránulos esparcidos -->
+      <g fill="#d9a15e">
+        <circle cx="270" cy="350" r="3.5"/><circle cx="250" cy="372" r="3"/>
+        <circle cx="285" cy="368" r="3"/><circle cx="262" cy="392" r="3.5"/>
+        <circle cx="240" cy="356" r="3"/><circle cx="300" cy="384" r="3"/>
+      </g>
+    </svg>
+
+    <div class="hero-oscuro"></div>
+
+    <div class="hero-contenido">
+      <span class="hero-insignia">TIERRA MÁS FÉRTIL</span>
+      <h1 class="hero-titulo">Fertiliza tu tierra con nuestros productos</h1>
+      <p class="hero-texto">
+        Fertilizantes orgánicos NPK que nutren el suelo, aumentan la productividad
+        y cuidan tu cosecha, temporada tras temporada.
+      </p>
+      <a class="hero-boton" routerLink="/products">VER FERTILIZANTES</a>
+    </div>
+  </div>
+</div>
+    <!-- Slide 3: descuentos -->
+<div class="carousel-item">
+  <div class="hero">
+    <svg class="hero-fondo" viewBox="0 0 1200 500" preserveAspectRatio="xMidYMid slice" aria-hidden="true">
+      <defs>
+        <linearGradient id="fondo-desc" x1="0" y1="0" x2="1" y2="1">
+          <stop offset="0" stop-color="#0f766e"/>
+          <stop offset="1" stop-color="#7cc576"/>
+        </linearGradient>
+        <g id="chispa-desc">
+          <path d="M0 -12 L3.5 -3.5 L12 0 L3.5 3.5 L0 12 L-3.5 3.5 L-12 0 L-3.5 -3.5Z"/>
+        </g>
+      </defs>
+
+      <rect width="1200" height="500" fill="url(#fondo-desc)"/>
+
+      <!-- círculos decorativos -->
+      <g fill="#fff" opacity=".10">
+        <circle cx="80" cy="60" r="90"/>
+        <circle cx="520" cy="470" r="110"/>
+        <circle cx="560" cy="40" r="60"/>
+      </g>
+
+      <!-- chispas -->
+      <g fill="#ffe082">
+        <use href="#chispa-desc" x="60" y="200"/>
+        <use href="#chispa-desc" x="440" y="70" transform="translate(440 70) scale(1.3) translate(-440 -70)"/>
+        <use href="#chispa-desc" x="520" y="230"/>
+        <use href="#chispa-desc" x="340" y="40"/>
+        <use href="#chispa-desc" x="110" y="330"/>
+      </g>
+
+      <!-- insignia grande de descuento -->
+      <circle cx="250" cy="150" r="98" fill="#e0245e"/>
+      <circle cx="250" cy="150" r="86" fill="none" stroke="#fff" stroke-width="3" stroke-dasharray="7 7"/>
+      <text x="250" y="132" text-anchor="middle" font-family="Arial, sans-serif" font-size="22" font-weight="700" fill="#fff">HASTA</text>
+      <text x="250" y="188" text-anchor="middle" font-family="Arial, sans-serif" font-size="64" font-weight="900" fill="#fff">30%</text>
+      <text x="250" y="210" text-anchor="middle" font-family="Arial, sans-serif" font-size="16" font-weight="700" fill="#fff">DESCUENTO</text>
+
+      <!-- estante -->
+      <rect x="60" y="412" width="470" height="16" rx="6" fill="#6b4a2b"/>
+      <rect x="80" y="428" width="14" height="50" fill="#5a3d22"/>
+      <rect x="496" y="428" width="14" height="50" fill="#5a3d22"/>
+
+      <!-- saco de fertilizante -->
+      <g>
+        <path d="M95 290 L185 290 L195 412 L85 412Z" fill="#c9a06a"/>
+        <path d="M95 290 Q140 304 185 290 L183 278 Q140 292 97 278Z" fill="#b48a55"/>
+        <rect x="102" y="320" width="76" height="56" rx="4" fill="#f4f1e6"/>
+        <path d="M130 334 Q140 316 150 334 Q140 344 130 334Z" fill="#3f7a35"/>
+        <text x="140" y="362" text-anchor="middle" font-family="Arial, sans-serif" font-size="13" font-weight="800" fill="#2f5d1a">NPK</text>
+      </g>
+
+      <!-- bolsa de suplemento -->
+      <g>
+        <path d="M235 296 Q285 306 335 296 L342 412 Q285 422 228 412Z" fill="#f5a623"/>
+        <path d="M235 296 Q285 306 335 296 L336 312 Q285 322 234 312Z" fill="#2f7d32"/>
+        <circle cx="285" cy="350" r="22" fill="#fff" opacity=".9"/>
+        <ellipse cx="287" cy="355" rx="12" ry="9" fill="#b8651b"/>
+        <circle cx="281" cy="342" r="6" fill="#b8651b"/>
+        <path d="M277 337 Q280 330 283 337 Q286 330 289 337Z" fill="#d32f2f"/>
+        <text x="285" y="392" text-anchor="middle" font-family="Arial, sans-serif" font-size="9" font-weight="800" fill="#fff">AVÍCOLA</text>
+      </g>
+
+      <!-- caja veterinaria -->
+      <g>
+        <polygon points="385,335 475,335 492,318 402,318" fill="#e8eef6"/>
+        <polygon points="475,335 492,318 492,395 475,412" fill="#c9d6e6"/>
+        <rect x="385" y="335" width="90" height="77" fill="#fff"/>
+        <rect x="385" y="372" width="90" height="28" fill="#1e73be"/>
+        <circle cx="430" cy="353" r="10" fill="#1e73be"/>
+        <circle cx="430" cy="353" r="5" fill="#fff"/>
+        <text x="430" y="391" text-anchor="middle" font-family="Arial, sans-serif" font-size="10" font-weight="700" fill="#fff">VET</text>
+      </g>
+
+      <!-- etiquetas de precio -->
+      <g font-family="Arial, sans-serif" font-weight="800" text-anchor="middle">
+        <circle cx="190" cy="285" r="26" fill="#e0245e"/>
+        <text x="190" y="290" font-size="15" fill="#fff">-20%</text>
+
+        <circle cx="340" cy="292" r="26" fill="#e0245e"/>
+        <text x="340" y="297" font-size="15" fill="#fff">-15%</text>
+
+        <circle cx="488" cy="322" r="26" fill="#e0245e"/>
+        <text x="488" y="327" font-size="15" fill="#fff">-30%</text>
+      </g>
+    </svg>
+
+    <div class="hero-oscuro"></div>
+
+    <div class="hero-contenido">
+      <span class="hero-insignia">OFERTAS DE TEMPORADA</span>
+      <h1 class="hero-titulo">Hasta 30% de descuento en tus productos del campo</h1>
+      <p class="hero-texto">
+        Aprovecha precios especiales en fertilizantes, suplementos y productos
+        veterinarios. Por tiempo limitado.
+      </p>
+      <a class="hero-boton" routerLink="/products">VER OFERTAS</a>
+    </div>
+  </div>
+</div>
+  </div>
+  <button class="carousel-control-prev" type="button" data-bs-target="#carouselExampleIndicators" data-bs-slide="prev">
+    <span class="carousel-control-prev-icon" aria-hidden="true"></span>
+    <span class="visually-hidden">Previo</span>
+  </button>
+  <button class="carousel-control-next" type="button" data-bs-target="#carouselExampleIndicators" data-bs-slide="next">
+    <span class="carousel-control-next-icon" aria-hidden="true"></span>
+    <span class="visually-hidden">siguiente</span>
+  </button>
+</div>
+<!-- fin carrusel -->
+<!-- inicio tarjetas -->
+ <div class="container text-center mt-5">
+  <div class="row">
+    <div class="col">
+      <div class="card" style="width: 18rem;">
+   <div class="col">
+      <div class="card h-100">
+        <svg class="card-img-top" viewBox="0 0 300 180" preserveAspectRatio="xMidYMid slice" role="img" aria-label="Antibiótico amoxicilina veterinario">
+          <rect width="300" height="180" fill="#f4f7fb"/>
+          <ellipse cx="150" cy="158" rx="80" ry="8" fill="#000" opacity=".08"/>
+          <polygon points="95,50 205,50 225,30 115,30" fill="#e8eef6"/>
+          <polygon points="205,50 225,30 225,135 205,155" fill="#c9d6e6"/>
+          <rect x="95" y="50" width="110" height="105" fill="#fff"/>
+          <rect x="95" y="100" width="110" height="38" fill="#1e73be"/>
+          <circle cx="150" cy="75" r="14" fill="#1e73be"/>
+          <circle cx="150" cy="75" r="8" fill="#fff"/>
+          <text x="150" y="124" text-anchor="middle" font-family="Arial, sans-serif" font-size="12" font-weight="700" fill="#fff">AMOXICILLIN</text>
+          <rect x="125" y="143" width="50" height="6" rx="2" fill="#9db7d5"/>
+        </svg>
+        <div class="card-body">
+          <h5 class="card-title">Antibiótico amoxicilina</h5>
+          <p class="card-text">Antibiótico de uso veterinario para el tratamiento de infecciones en tu ganado.</p>
+          <a routerLink="/products" class="btn btn-primary">Ver productos</a>
+        </div>
+      </div>
+    </div>
+ 
+</div>
+    </div>
+    <div class="col">
+      <div class="card" style="width: 18rem;">
+  <div class="col">
+      <div class="card h-100">
+        <svg class="card-img-top" viewBox="0 0 300 180" preserveAspectRatio="xMidYMid slice" role="img" aria-label="Bebedero automático porcino">
+          <rect width="300" height="180" fill="#e9ecef"/>
+          <rect x="190" y="0" width="110" height="180" fill="#f8f9fa"/>
+          <rect x="70" y="50" width="70" height="70" rx="8" fill="#fff" stroke="#ced4da" stroke-width="3"/>
+          <circle cx="105" cy="85" r="22" fill="#b8bfc6"/>
+          <circle cx="105" cy="85" r="12" fill="#dde1e5"/>
+          <rect x="105" y="78" width="85" height="16" rx="6" fill="#aeb6bd"/>
+          <rect x="105" y="80" width="85" height="4" rx="2" fill="#e6e9ec"/>
+          <rect x="170" y="94" width="18" height="34" rx="5" fill="#9aa3ab"/>
+          <rect x="174" y="126" width="10" height="10" rx="3" fill="#6c757d"/>
+          <path d="M179 146 C172 156 172 164 179 164 C186 164 186 156 179 146Z" fill="#6ab7ef"/>
+        </svg>
+        <div class="card-body">
+          <h5 class="card-title">Bebedero automático porcino</h5>
+          <p class="card-text">Bebedero de acero inoxidable con suministro continuo de agua para cerdos.</p>
+          <a routerLink="/products" class="btn btn-primary">Ver productos</a>
+        </div>
+      </div>
+    </div>
+ 
+</div>
+    </div>
+    <div class="col">
+      <div class="card" style="width: 18rem;">
+  <div class="col">
+      <div class="card h-100">
+        <svg class="card-img-top" viewBox="0 0 300 180" preserveAspectRatio="xMidYMid slice" role="img" aria-label="Fertilizante orgánico NPK">
+          <rect width="300" height="180" fill="#e6e8ea"/>
+          <ellipse cx="150" cy="162" rx="70" ry="7" fill="#000" opacity=".1"/>
+          <path d="M100 38 L200 38 L212 155 L88 155 Z" fill="#c9a06a"/>
+          <path d="M100 38 Q150 52 200 38 L198 26 Q150 40 102 26 Z" fill="#b48a55"/>
+          <rect x="108" y="68" width="84" height="64" rx="4" fill="#f4f1e6"/>
+          <path d="M140 84 Q150 66 160 84 Q150 94 140 84Z" fill="#3f7a35"/>
+          <text x="150" y="104" text-anchor="middle" font-family="Arial, sans-serif" font-size="9" font-weight="700" fill="#2f5d1a">ORGANIC NPK</text>
+          <text x="150" y="116" text-anchor="middle" font-family="Arial, sans-serif" font-size="8" fill="#2f5d1a">FERTILIZER</text>
+          <text x="150" y="128" text-anchor="middle" font-family="Arial, sans-serif" font-size="9" font-weight="700" fill="#2f5d1a">NPK 4-4-4</text>
+        </svg>
+        <div class="card-body">
+          <h5 class="card-title">Fertilizante orgánico NPK</h5>
+          <p class="card-text">Nutrición balanceada para tus cultivos, con ingredientes de origen orgánico.</p>
+          <a routerLink="/products" class="btn btn-primary">Ver productos</a>
+        </div>
+      </div>
+    </div>
+ 
+</div>
+    </div>
+  </div>
+</div>
