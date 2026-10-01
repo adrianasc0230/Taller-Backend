@@ -1,7 +1,10 @@
 import { Component } from '@angular/core';
+import { Usaurios } from '../usaurios/usaurios';
+
+
 
 @Component({
-  imports: [],
+  imports: [Usaurios],
   selector: 'app-login',
   styleUrl: './login.css',
   templateUrl: './login.html',
