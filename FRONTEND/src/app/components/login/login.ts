@@ -1,10 +1,10 @@
 import { Component } from '@angular/core';
-import { Usaurios } from '../usaurios/usaurios';
+import { RouterLink } from '@angular/router';
 
 
 
 @Component({
-  imports: [Usaurios],
+  imports: [RouterLink],
   selector: 'app-login',
   styleUrl: './login.css',
   templateUrl: './login.html',
