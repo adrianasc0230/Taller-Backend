@@ -2,15 +2,15 @@
   <div class="card border-success mb-3 tarjeta-login">
     <div class="card-header fs-4 text-center">Login AGROANIMA</div>
     <div class="card-body text-success p-4">
-      <form>
+      <form [formGroup]="credentialsForm" (ngSubmit)="handleSubmit()">
         <div class="mb-3">
           <label for="correo" class="form-label">Correo electrónico</label>
-          <input type="email" class="form-control form-control-lg" id="correo" aria-describedby="emailHelp">
+          <input type="email" class="form-control form-control-lg" id="correo" aria-describedby="emailHelp" formControlName="username">
           <div id="emailHelp" class="form-text">Tus datos están seguros con nosotros.</div>
         </div>
         <div class="mb-3">
           <label for="clave" class="form-label">Contraseña</label>
-          <input type="password" class="form-control form-control-lg" id="clave">
+          <input type="password" class="form-control form-control-lg" id="clave" formControlName="password">
         </div>
         <div class="mb-3 form-check">
           <input type="checkbox" class="form-check-input" id="recordar">
