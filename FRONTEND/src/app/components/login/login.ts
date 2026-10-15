@@ -19,6 +19,18 @@ export class Login {
   });
 
   handleSubmit() {
-    console.log("works");
-  }
+    if(this.credentialsForm.valid){
+      const username = this.credentialsForm.value.username;
+      const password = this.credentialsForm.value.password;
+    if(typeof username === 'string' && typeof password === 'string'){
+    const credential: Credential={
+        username,
+        password,
+    };
+  console.log(credential);
+      };
+    }else{
+      console.log('Error, formulario inválido')
+    }
+  };
 }
