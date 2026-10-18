@@ -39,7 +39,14 @@ export class Login {
     console.log("response:", response);
    if(response.message && response.message.includes('Acceso permitido Bienvenido')){
     localStorage.setItem('token',response.data);
-    this.router.navigateByUrl('/products');
+    const decoded: any =this.loginServide.decodeToken(response.data)
+    console.log('token decodificado' , decoded);
+    if(decoded.rol === 'admin'){
+      this.router.navigateByUrl('/adminPanel')
+    }else{
+      alert("redirigiendo a productos");
+      this.router.navigateByUrl('/products');
+    }
    } else{console.log('no funcionó')};
     
   })
