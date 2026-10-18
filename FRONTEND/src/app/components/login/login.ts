@@ -1,7 +1,10 @@
-import { Component } from '@angular/core';
+import { Component, inject } from '@angular/core';
 import { RouterLink } from '@angular/router';
 import { Credential } from '../../interfaces/credential';
 import { ReactiveFormsModule, FormControl,FormGroup,Validators }from '@angular/forms';
+import { LoginService } from '../../services/login-service';
+import { response } from 'express';
+import { Router } from '@angular/router';
 
 
 
@@ -13,9 +16,12 @@ import { ReactiveFormsModule, FormControl,FormGroup,Validators }from '@angular/f
   templateUrl: './login.html',
 })
 export class Login {
+  router = inject(Router);
+  loginServide: LoginService = inject(LoginService);
   credentialsForm = new FormGroup({
     username: new FormControl('', Validators.required), 
     password: new FormControl('', Validators.required), 
+    
   });
 
   handleSubmit() {
@@ -28,6 +34,15 @@ export class Login {
         password,
     };
   console.log(credential);
+
+  this.loginServide.login(credential).subscribe((response: any)=>{
+    console.log("response:", response);
+   if(response.message && response.message.includes('Acceso permitido Bienvenido')){
+    localStorage.setItem('token',response.data);
+    this.router.navigateByUrl('/products');
+   } else{console.log('no funcionó')};
+    
+  })
       };
     }else{
       console.log('Error, formulario inválido')
