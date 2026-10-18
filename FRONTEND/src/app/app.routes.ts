@@ -5,6 +5,9 @@ import { Products } from './components/products/products';
 import { NotFound } from './components/not-found/not-found';
 import { Contacto } from './components/contacto/contacto';
 import { Usaurios } from './components/usaurios/usaurios';
+import { Shopping } from './components/shopping/shopping';
+import {Cart} from './components/cart/cart';
+
 
 export const routes: Routes = [
     {path: 'home', title: 'Home', component: Home},
@@ -12,6 +15,8 @@ export const routes: Routes = [
     {path: 'products', title: 'Products', component: Products},
     {path: 'contacto', title: 'Contacto', component: Contacto},
     {path: 'usaurios', title: 'Usaurios', component: Usaurios},
+    {path: 'shopping', title: 'Shopping', component: Shopping},
+    {path: 'cart', title:'Cart',component: Cart},
     {path: '', redirectTo: 'home', pathMatch: 'full'},
     {path: '**', title: 'notFound', component: NotFound}
 ];
