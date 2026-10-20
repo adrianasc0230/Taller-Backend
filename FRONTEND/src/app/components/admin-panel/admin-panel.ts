@@ -1,4 +1,5 @@
 import { Component } from '@angular/core';
+import { Router } from '@angular/router'; 
 
 @Component({
   imports: [],
@@ -6,4 +7,11 @@ import { Component } from '@angular/core';
   styleUrl: './admin-panel.css',
   templateUrl: './admin-panel.html',
 })
-export class AdminPanel {}
+export class AdminPanel {
+    constructor(private router:Router){}
+
+  logout(){
+    localStorage.removeItem('token');
+    this.router.navigate(['/login']);
+  }
+}

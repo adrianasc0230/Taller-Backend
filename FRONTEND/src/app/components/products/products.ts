@@ -10,8 +10,8 @@ import { Router } from '@angular/router';
 export class Products {
   constructor(private router:Router){}
 
-  logout(){
-    localStorage.removeItem('token');
+  login(){
+    alert("Primero debes loguearte");
     this.router.navigate(['/login']);
   }
 }

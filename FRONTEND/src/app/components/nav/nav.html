@@ -1,17 +1,17 @@
 <nav class="navbar navbar-expand-lg bg-body-tertiary">
   <div class="container-fluid">
-    
+
     <!-- 1. Logo / Marca -->
     <h3 class="text-success">Agroanima</h3>
-    
+
     <!-- 2. Botón menú hamburguesa (Para móviles) -->
     <button class="navbar-toggler" type="button" data-bs-toggle="collapse" data-bs-target="#navbarNavAltMarkup" aria-controls="navbarNavAltMarkup" aria-expanded="false" aria-label="Toggle navigation">
       <span class="navbar-toggler-icon"></span>
     </button>
-    
+
     <!-- 3. Contenido colapsable del Navbar -->
     <div class="collapse navbar-collapse" id="navbarNavAltMarkup">
-      
+
       <!-- Enlaces de navegación (me-auto los empuja a la izquierda) -->
       <div class="navbar-nav me-auto mb-2 mb-lg-0">
         <a class="nav-link active" aria-current="page" routerLink="home">Home</a>
@@ -19,33 +19,36 @@
         <a class="nav-link" routerLink="contacto">Contacto</a>
       </div>
 
-      <!-- 4. Contenedor del Buscador y Usuario (A la derecha) -->
+      <!-- 4. Contenedor del Buscador, Usuario y Carrito (A la derecha) -->
       <div class="d-flex align-items-center gap-3">
-        
+
         <!-- Formulario de búsqueda con Lupa -->
         <form class="d-flex m-0" role="search">
           <input class="form-control me-2" type="search" placeholder="Buscar productos" aria-label="Search"/>
           <button class="btn btn-outline-success d-flex align-items-center justify-content-center" type="submit" title="Buscar">
-            <i class="bi bi-search"></i> <!-- Icono de Lupa -->
+            <i class="bi bi-search"></i>
           </button>
         </form>
 
         <!-- Icono de Usuario -->
         <a routerLink="login" class="text-secondary d-flex align-items-center" style="font-size: 1.5rem; text-decoration: none;" title="Mi Perfil">
-          <i class="bi bi-person-circle"></i> <!-- Icono de Usuario -->
+          <i class="bi bi-person-circle"></i>
         </a>
 
-         <a routerLink="cart" class="text-secondary d-flex align-items-center" style="font-size: 1.5rem; text-decoration: none;" title="Mi Perfil">
-          <i class="bi bi-cart3"></i> I
-        </a> 
-        <!-- <button class="btn btn-outline-light position-relative" type="button" data-bs-toggle="offcanvas" data-bs-target="#offcanvasCarrito">
-        <i class="bi bi-cart3"></i> Carrito
-        <span id="badge-contador" class="position-absolute top-0 start-100 translate-middle badge rounded-pill bg-danger">
-          0
-        </span>
-      </button> -->
+        <!-- Icono de Carrito con contador -->
+        <a routerLink="cart" class="text-secondary d-flex align-items-center position-relative"
+           style="font-size: 1.5rem; text-decoration: none;" title="Mi carrito">
+          <i class="bi bi-cart3"></i>
+          @if (cartService.count() > 0) {
+            <span class="position-absolute top-0 start-100 translate-middle badge rounded-circle bg-danger d-inline-flex align-items-center justify-content-center"
+                  style="font-size: .65rem; min-width: 1.3rem; height: 1.3rem;">
+              {{ cartService.count() }}
+            </span>
+          }
+        </a>
+
       </div>
-      
+
     </div>
   </div>
 </nav>
