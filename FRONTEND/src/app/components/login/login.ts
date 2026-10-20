@@ -45,7 +45,7 @@ export class Login {
       this.router.navigateByUrl('/adminPanel')
     }else{
       alert("redirigiendo a productos");
-      this.router.navigateByUrl('/products');
+      this.router.navigateByUrl('/shopping');
     }
    } else{console.log('no funcionó')};
     

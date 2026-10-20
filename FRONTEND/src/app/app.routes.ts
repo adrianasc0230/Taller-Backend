@@ -14,12 +14,12 @@ import { authGuard } from './guards/auth-guard';
 export const routes: Routes = [
     {path: 'home', title: 'Home', component: Home},
     {path: 'login', title: 'Login', component: Login},
-    {path: 'products', title: 'Products', component: Products, canActivate:[authGuard]},
+    {path: 'products', title: 'Products', component: Products},
     {path: 'contacto', title: 'Contacto', component: Contacto},
     {path: 'usaurios', title: 'Usaurios', component: Usaurios},
-    {path: 'shopping', title: 'Shopping', component: Shopping},
+    {path: 'shopping', title: 'Shopping', component: Shopping, canActivate: [authGuard]},
     {path: 'cart', title:'Cart',component: Cart},
-    {path: 'adminPanel', title: 'AdminPanel', component: AdminPanel},
+    {path: 'adminPanel', title: 'AdminPanel', component: AdminPanel, canActivate: [authGuard]},
     {path: '', redirectTo: 'home', pathMatch: 'full'},
     {path: '**', title: 'notFound', component: NotFound}
 ];
