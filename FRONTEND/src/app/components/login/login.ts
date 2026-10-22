@@ -5,6 +5,7 @@ import { ReactiveFormsModule, FormControl,FormGroup,Validators }from '@angular/f
 import { LoginService } from '../../services/login-service';
 import { response } from 'express';
 import { Router } from '@angular/router';
+import { Recover } from '../recover/recover';
 
 
 

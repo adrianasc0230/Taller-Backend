@@ -1,5 +1,7 @@
 import modelUsuer from "../models/modelUsuer.js";
 import bcrypt from "bcryptjs";
+import crypto from "node:crypto";
+import nodemailer from "nodemailer";
 
 const controllerUsers = {
     createUser: async (req , res)=>{
@@ -112,6 +114,54 @@ const controllerUsers = {
             });
         }
     }
+};
+function generarContrasenaAleatoria(){
+    return crypto.randomBytes(6).toString('hex');
 }
+export const forgotPassword = async (req,res) => {
+    try{
+        const {email}=req.body;
+        const user = await modelUsuer.findOne({email});
+        if(!user){
+            res.json({
+                result: 'mistake',
+                message: 'El correo ingresado no se encuentra en nuestra base de datos',
+                data: null,
+            });
+        }
+        const newPass = generarContrasenaAleatoria();
+        const hashPassword = await bcrypt.hash(newPass, 12);
+        user.password = hashPassword;
+        await user.save();
+
+        const transporter = nodemailer.createTransport({
+            service: 'gmail',
+            auth:{
+                user: process.env.EMAIL_NODE,
+                pass: process.env.PASS_NODE
+            }
+        });
+        const mailOptions = {
+            from: process.env.EMAIL_NODE,
+            to: email,
+            subject: 'Recuperacion de contraseña',
+            text: `Hola ${user.name},\n\ntu nueva contraseña temporal es: ${newPass}\n\nRecuerda actualizar tu contraseña en tu perfil por seguridad.\n\nsaludos desde el area de soporte de Agroanima`
+        };
+        await transporter.sendMail(mailOptions);
+
+        res.json({
+            result:'fine',
+            message: 'se ha enviado una nueva contraseña al correo registrado'
+        });
+
+    }catch(error){
+        console.error('Error al recuperar la contraseña', error);
+        res.json({
+                result: 'mistake',
+                message: 'Error interno en el servidor', error: error.message,
+            });
+    }
+}
+
 
 export default controllerUsers;
