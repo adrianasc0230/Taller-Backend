@@ -9,6 +9,7 @@ import { Shopping } from './components/shopping/shopping';
 import {Cart} from './components/cart/cart';
 import { AdminPanel } from './components/admin-panel/admin-panel';
 import { authGuard } from './guards/auth-guard';
+import { Recover } from './components/recover/recover';
 
 
 export const routes: Routes = [
@@ -20,6 +21,7 @@ export const routes: Routes = [
     {path: 'shopping', title: 'Shopping', component: Shopping, canActivate: [authGuard]},
     {path: 'cart', title:'Cart',component: Cart},
     {path: 'adminPanel', title: 'AdminPanel', component: AdminPanel, canActivate: [authGuard]},
+    {path: 'recover', title: 'Recover', component: Recover},
     {path: '', redirectTo: 'home', pathMatch: 'full'},
     {path: '**', title: 'notFound', component: NotFound}
 ];
