@@ -2,6 +2,7 @@ import modelUsuer from "../models/modelUsuer.js";
 import bcrypt from "bcryptjs";
 import crypto from "node:crypto";
 import nodemailer from "nodemailer";
+import fs from "fs";
 
 const controllerUsers = {
     createUser: async (req , res)=>{
