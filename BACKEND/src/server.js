@@ -1,6 +1,7 @@
 import express from 'express';
 import morgan from 'morgan';
 import cors from  'cors';
+import path from 'path';
 import routesUser from './routes/routesUser.js';
 import routerProduct from './routes/routesProduct.js';
 import routShopping from './routes/routesShopping.js';
@@ -12,6 +13,7 @@ const server = express();
 server.use(cors({origin:'http://localhost:4200'}));
 server.use(morgan('dev'));
 server.use(express.json());
+server.use('/images', express.static(path.resolve('images')));
 server.use('/user', routesUser);
 server.use('/products',routerProduct);
 server.use('/shopping', routShopping);

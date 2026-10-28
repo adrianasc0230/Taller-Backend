@@ -4,17 +4,23 @@ import crypto from "node:crypto";
 import nodemailer from "nodemailer";
 import fs from "fs";
 
+const  DEFAULT_IMAGE = 'images/users/logindefault.png';
+
 const controllerUsers = {
     createUser: async (req , res)=>{
         try {
             const{name, email, rol, password, idCard} = req.body;
             const passwordProtected = await bcrypt.hash(password, 12);
+            const imageRoute = req.file
+                ? `images/users/${req.file.filename}`
+                : DEFAULT_IMAGE;
             const newUser = new modelUsuer({
                 name, 
                 email, 
                 rol: rol || "user",
                 idCard,
                 password: passwordProtected, 
+                image: imageRoute
             });
             console.log(newUser);
 
@@ -28,6 +34,9 @@ const controllerUsers = {
 
             }
         } catch (error) {
+            if(req.file && fs.existsSync(`images/users/${req.file.filename}`)) {
+                fs.unlinkSync(`images/users/${req.file.filename}`);
+            }
             res.json({
                 message:'Ocurrio un error creando el usuario',
                 data:error,
@@ -73,6 +82,11 @@ const controllerUsers = {
         try {
             const deleteUser = await modelUsuer.findByIdAndDelete(req.params.id);
             if(deleteUser._id){
+                if(deleteUser.image && deleteUser.image !== DEFAULT_IMAGE){
+                    if(fs.existsSync(deleteUser.image)) {
+                        fs.unlinkSync(deleteUser.image);
+                    }
+                }
                 res.json({
                     message: `El usuario con el ID:${deleteUser._id} ha sido borrado`,
                     data: null,
@@ -95,6 +109,15 @@ const controllerUsers = {
             if (updateData.password) {
                 updateData.password = await bcrypt.hash(updateData.password, 12);
             }
+            if (req.file) {
+                const currentUser = await modelUsuer.findById(req.params.id);
+                if (currentUser && currentUser.image && currentUser.image !== DEFAULT_IMAGE) {
+                    if (fs.existsSync(currentUser.image)) {
+                        fs.unlinkSync(currentUser.image);
+                    }
+                }
+                updateData.image = `images/users/${req.file.filename}`;
+            }
 
             const userToUpdate = await modelUsuer.findByIdAndUpdate(
                 req.params.id,
@@ -109,6 +132,9 @@ const controllerUsers = {
                 });
             }
         } catch (error) {
+            if (req.file && fs.existsSync(`images/users/${req.file.filename}`)) {
+                fs.unlinkSync(`images/users/${req.file.filename}`);
+            }
             res.json({
                 message: 'A ocurrido un error al actualizar el usuario',
                 data: error,
