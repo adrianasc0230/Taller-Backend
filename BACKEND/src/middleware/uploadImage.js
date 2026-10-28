@@ -22,12 +22,12 @@ const storageUsers = multer.diskStorage({
         }
         cb(null, directory);
     },
-    filename:(req, file, cd)=>{
+    filename:(req, file, cb)=>{
         const extension = path.extname(file.originalname);
         const nameWithoutExt= path.basename(file.originalname, extension).replace(/\s+/g, '-').toLocaleLowerCase();
         const timestamp = new Date().toISOString().replace(/[-:.TZ]/g,'');
         const uniqueName =`user-${nameWithoutExt}${timestamp}${extension}`;
-        cb(null, uniqueName);
+        cb (null, uniqueName);
     },
 });
 
