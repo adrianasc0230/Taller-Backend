@@ -35,6 +35,11 @@ const schemaUser = new Schema({
         type: String,
         required: true,
         trim: true
+    },
+
+    image: {
+        type: String,
+        default: 'images/users/logindefault.png'
     }
 });
 

@@ -15,7 +15,8 @@ const controllerLogin = {
                 const token = await generarToken({
                     id: userFound._id,
                     name: userFound.name,
-                    rol: userFound.rol
+                    rol: userFound.rol,
+                    image: userFound.image
                 });
                 res.json({
                     message: `Acceso permitido Bienvenido ${userFound.name}`,
