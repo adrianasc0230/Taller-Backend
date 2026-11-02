@@ -37,6 +37,14 @@ const schemaUser = new Schema({
         trim: true
     },
 
+    telefono:{
+        type: String,
+        required: true,
+        trim: true,
+        match: [/^\+?[1-9]\d{6,14}$/, 'Por favor imgrese un numero de telefono valido']
+        
+    },
+
     image: {
         type: String,
         default: 'images/users/logindefault.png'
