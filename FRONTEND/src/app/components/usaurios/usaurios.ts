@@ -1,4 +1,4 @@
-import { Component, inject,signal } from '@angular/core';
+import { Component, inject,signal, } from '@angular/core';
 import { ReactiveFormsModule,FormBuilder,Validators } from '@angular/forms';
 import { Router } from '@angular/router';
 import { UserService } from '../../services/user-service';
@@ -63,8 +63,17 @@ export class Usaurios {
     .subscribe({
       next: (response) => {
         console.log('Respuesta del servidor:', response);
-        if (response.result === 'fine') {}
+        if (response.message && response.message.includes('Usuario creado exitosamente con el rol de')){
+          alert('¡Usuarios registrado con exito!');
+          this.router.navigate(['/login']);
+        }else{
+          alert('no se pudo registrar: ' + response.message);
+        }
+      },
+      error: (err) => {
+        console.error('Error de red o del servidor:', err);
+        alert('Ocurrio un error en el servidor al intentar registrar el usuario.');
       }
-    })
+    });
   }
 }

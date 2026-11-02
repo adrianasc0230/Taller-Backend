@@ -42,6 +42,7 @@ export class Login {
     localStorage.setItem('token',response.data);
     const decoded: any =this.loginServide.decodeToken(response.data)
     console.log('token decodificado' , decoded);
+    alert(response.message);
     if(decoded.rol === 'admin'){
       this.router.navigateByUrl('/adminPanel')
     }else{

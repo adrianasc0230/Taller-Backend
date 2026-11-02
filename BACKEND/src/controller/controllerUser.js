@@ -9,7 +9,7 @@ const  DEFAULT_IMAGE = 'images/users/logindefault.png';
 const controllerUsers = {
     createUser: async (req , res)=>{
         try {
-            const{name, email, rol, password, idCard} = req.body;
+            const{name, email, rol, password, idCard, telefono} = req.body;
             const passwordProtected = await bcrypt.hash(password, 12);
             const imageRoute = req.file
                 ? `images/users/${req.file.filename}`
@@ -35,6 +35,8 @@ const controllerUsers = {
 
             }
         } catch (error) {
+            console.error(error);
+
             if(req.file && fs.existsSync(`images/users/${req.file.filename}`)) {
                 fs.unlinkSync(`images/users/${req.file.filename}`);
             }
