@@ -3,6 +3,9 @@ import { HttpClient } from '@angular/common/http';
 import { Observable } from 'rxjs';
 import { ServerResponse } from '../interfaces/user';
 
+@Injectable({
+   providedIn:'root' 
+})
 
 export class UserService {
     private httpCliente = inject(HttpClient);
