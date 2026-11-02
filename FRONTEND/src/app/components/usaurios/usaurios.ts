@@ -1,6 +1,8 @@
 import { Component, inject,signal } from '@angular/core';
 import { ReactiveFormsModule,FormBuilder,Validators } from '@angular/forms';
 import { Router } from '@angular/router';
+import { UserService } from '../../services/user-service';
+import { response } from 'express';
 
 @Component({
   imports: [ReactiveFormsModule],
@@ -11,6 +13,7 @@ import { Router } from '@angular/router';
 export class Usaurios {
   router = inject(Router);
   private fb = inject(FormBuilder);
+  private userSevice = inject(UserService);
   selectedFile = signal<File | null>(null);
   imagePreview = signal<string | null>(null);
   registerForm = this.fb.nonNullable.group({
@@ -18,6 +21,7 @@ export class Usaurios {
     email:['',[Validators.required,Validators.email]],
     password:['',[Validators.required,]],
     idCard:['',[Validators.required]],
+    telefono:['',[Validators.pattern(/^\+?[1-9]\d{6,14}$/)]],
     rol:['']
   });
   onFileSelected(event:Event):void{
@@ -35,7 +39,7 @@ export class Usaurios {
       this.imagePreview.set(null);
     }
   }
-  inSubmit(): void{
+  onSubmit(): void{
     if(this.registerForm.invalid){
       alert('Por favor completa los campos obligatorios (Nombre, correo, contraseña, Número de documento)');
       return;
@@ -46,6 +50,7 @@ export class Usaurios {
     formData.append('email',datos.email);
     formData.append('password',datos.password);
     formData.append('idCard',datos.idCard);
+    formData.append('telefono',datos.telefono);
     if(datos.rol){
       formData.append('rol',datos.rol);
     }
@@ -54,5 +59,12 @@ export class Usaurios {
       formData.append('images',file);
     }
     console.log('Datos con FormBuilder:', datos, 'Archivo:',file);
+    this.userSevice.regiterUser(formData)
+    .subscribe({
+      next: (response) => {
+        console.log('Respuesta del servidor:', response);
+        if (response.result === 'fine') {}
+      }
+    })
   }
 }

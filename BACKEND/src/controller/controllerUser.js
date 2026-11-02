@@ -19,6 +19,7 @@ const controllerUsers = {
                 email, 
                 rol: rol || "user",
                 idCard,
+                telefono,
                 password: passwordProtected, 
                 image: imageRoute
             });
