@@ -64,7 +64,35 @@ export class CrudProducts {
       }
     })
   }
-
+updateProduct(): void{
+    if(!this.productForm._id){
+      alert('No se encontró el ID del producto');
+      return;
+    }
+    const formData = new FormData();
+    formData.append('product', this.productForm.product);
+    formData.append('category', this.productForm.category);
+    formData.append('description', this.productForm.description);
+    formData.append('price', this.productForm.price.toString());
+    formData.append('rating', this.productForm.rating.toString());
+    formData.append('numberOfReviews', this.productForm.numberOfReviews.toString());
+    formData.append('stock', this.productForm.stock.toString());
+    const file = this.selectedFile();
+    if(file){
+      formData.append('images',file);
+    }
+    this.productsService.update(this.productForm._id,formData).subscribe({
+      next:() => {
+        alert('El producto fue actualizado de manera exitosa');
+        this.cancelForm();
+        this.getProducts();
+      },
+      error:(err) =>{
+        console.error('Error al actualizar producto'err);
+        alert('Error al actualizar producto');
+      }
+    });
+  }
   resetProducts(): Products {
     return {
     product: '', 
