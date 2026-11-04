@@ -36,6 +36,35 @@ export class CrudProducts {
       this.selectedFile.set(input.files[0]);
     }
   }
+
+  createProduct(): void {
+    const file = this.selectedFile();
+    if (!file){
+      alert('Selecciona la imagen del producto');
+      return;
+    }
+    const formData = new FormData();
+    formData.append('product', this.productForm.product);
+    formData.append('category', this.productForm.category);
+    formData.append('description', this.productForm.description);
+    formData.append('price', this.productForm.price.toString());
+    formData.append('rating', this.productForm.rating.toString());
+    formData.append('numberOfReviews', this.productForm.numberOfReviews.toString());
+    formData.append('images', file);
+    formData.append('stock', this.productForm.stock.toString());
+    this.productsService.create(formData).subscribe({
+      next: () => {
+        alert('Producto creado exitosamente');
+        this.cancelForm();
+        this.getProducts();
+      },
+      error: (err) => {
+        console.error('Ocurrio un error al crear el producto', err);
+        alert('Ocurrio un error al crear el producto');
+      }
+    })
+  }
+
   resetProducts(): Products {
     return {
     product: '', 
@@ -59,6 +88,11 @@ export class CrudProducts {
     this.productForm = { ...products};
     this.selectedFile.set(null);
     this.showForm.set(true);
+  }
+  cancelForm(): void {
+    this.showForm.set(false);
+    this.productForm = this.resetProducts();
+    this.selectedFile.set(null);
   }
   
 }
