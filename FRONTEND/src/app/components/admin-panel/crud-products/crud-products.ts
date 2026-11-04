@@ -93,6 +93,19 @@ updateProduct(): void{
       }
     });
   }
+
+  deleteProduct(id: string): void{
+    if (confirm('¿Esta seguro de eliminar este producto?')){
+      this.productsService.delete(id).subscribe({
+        next: () => {
+          this.getProducts();
+        },
+        error: (err) => console.error('Error al eliminar el producto', err)
+      });
+    }
+  }
+
+
   resetProducts(): Products {
     return {
     product: '', 
