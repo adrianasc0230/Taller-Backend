@@ -18,7 +18,7 @@ const controllerProduct = {
                     });
                 }
                 console.log(req);
-        const decodificado = await validarToken(req.body.token);
+        /* const decodificado = await validarToken(req.body.token);
             if(decodificado.rol != 'admin')
             {
                 res.json({
@@ -26,7 +26,7 @@ const controllerProduct = {
                                 data: null,
                 
                             });
-            }
+            } */
                 const newProduct = new modelProduct({
                     product: req.body.product, 
                     category: req.body.category,
@@ -89,7 +89,7 @@ const controllerProduct = {
     productUpdate: async ( req, res) => {
         try {
             const { id } = req.params;
-            const decodificado = await validarToken(req.body.token);
+            /* const decodificado = await validarToken(req.body.token);
             if(decodificado.rol != 'admin')
             {
                 res.json({
@@ -97,7 +97,7 @@ const controllerProduct = {
                                 data: null,
                 
                             });
-            }
+            } */
 
             const existingProduct = await modelProduct.findById(id);
             if (!existingProduct) {
@@ -153,7 +153,7 @@ const controllerProduct = {
     productDelete : async (req, res)=> {
         try {
             console.error(req);
-            const decodificado = await validarToken(req.params.token);
+            /* const decodificado = await validarToken(req.params.token);
             if(decodificado.rol != 'admin')
             {
                 res.json({
@@ -161,7 +161,7 @@ const controllerProduct = {
                                 data: null,
                 
                             });
-            }
+            } */
             const productDelete = await modelProduct.findByIdAndDelete(req.params.id);
 
             if(!productDelete){
