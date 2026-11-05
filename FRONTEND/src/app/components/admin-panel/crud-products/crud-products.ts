@@ -77,6 +77,7 @@ updateProduct(): void{
     formData.append('rating', this.productForm.rating.toString());
     formData.append('numberOfReviews', this.productForm.numberOfReviews.toString());
     formData.append('stock', this.productForm.stock.toString());
+
     const file = this.selectedFile();
     if(file){
       formData.append('images',file);
@@ -88,7 +89,7 @@ updateProduct(): void{
         this.getProducts();
       },
       error:(err) =>{
-        console.error('Error al actualizar producto'err);
+        console.error('Error al actualizar producto', err);
         alert('Error al actualizar producto');
       }
     });

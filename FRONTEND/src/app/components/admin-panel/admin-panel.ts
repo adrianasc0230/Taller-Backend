@@ -2,10 +2,10 @@ import { Component, inject, OnInit, signal } from '@angular/core';
 import { Router } from '@angular/router';
 import { jwtDecode } from 'jwt-decode';
 import { UserService } from '../../services/user-service'; 
-import { error } from 'console';
+import { CrudProducts } from './crud-products/crud-products';
 
 @Component({
-  imports: [],
+  imports: [ CrudProducts],
   selector: 'app-admin-panel',
   styleUrl: './admin-panel.css',
   templateUrl: './admin-panel.html',
