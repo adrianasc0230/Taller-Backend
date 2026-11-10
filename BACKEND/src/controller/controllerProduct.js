@@ -9,6 +9,19 @@ const controllerProduct = {
     productCreate: async (req , res)=>{
         
         try {
+            
+
+                    /* const decodificado = await validarToken(req.body.token);
+            if(decodificado.rol != 'admin')
+            {
+                res.json({
+                                message:`Rol no valido para operación`,
+                                data: null,
+                
+                            });
+            } */
+
+                    
             uploadSingleImage(req,res, async(error)=>{
                 if(error){
                     console.log(error);
@@ -18,31 +31,28 @@ const controllerProduct = {
                     });
                 }
                 console.log(req);
-        /* const decodificado = await validarToken(req.body.token);
-            if(decodificado.rol != 'admin')
-            {
-                res.json({
-                                message:`Rol no valido para operación`,
-                                data: null,
-                
-                            });
-            } */
+        
+                const buffer = await fs.promises.readFile(req.file.path);
+                const base64 = buffer.toString('base64');
+                const imageDB = `data:${req.file.mimetype};base64,${base64}`;
+
+                await fs.promises.unlink(req.file.path);
                 const newProduct = new modelProduct({
-                    product: req.body.product, 
-                    category: req.body.category,
-                    description: req.body.description,
-                    price: req.body.price,
-                    rating: req.body.rating,
-                    numberOfReviews: req.body.numberOfReviews,  
-                    images: req.file.filename,
-                    stock: req.body.stock
-                });
-                
-                const saveProduct = await newProduct.save();
-                    res.json({
-                        message:'Producto guardado',
-                        data: saveProduct,
+                        product: req.body.product, 
+                        category: req.body.category,
+                        description: req.body.description,
+                        price: req.body.price,
+                        rating: req.body.rating,
+                        numberOfReviews: req.body.numberOfReviews,  
+                        images: imageDB,
+                        stock: req.body.stock
                     });
+                    console.log(imageDB);
+                    const saveProduct = await newProduct.save();
+                        res.json({
+                            message:'Producto guardado',
+                            data: saveProduct,
+                        });
             })
         } catch (error) {
             res.json({
@@ -111,16 +121,16 @@ const controllerProduct = {
                 });
             }
 
+            let imageDB = existingProduct.images;
             if ( req.file){
-                if(existingProduct.images) {
-                    const oldImagesPath = path.join('images', existingProduct.images);
+                const buffer = await fs.promises.readFile(req.file.path);
+                imageDB = `data:${req.file.mimetype};base64,${buffer.toString('base64')}`;
+                await fs.promises.unlink(req.file.path); 
 
-                    if (fs.existsSync(oldImagesPath)) {
-                        fs.unlinkSync(oldImagesPath);
-                    }
-                }
             }
 
+            console.log("prueba update");
+            console.log(imageDB);
             const newData = {
                 product: req.body.product, 
                 category: req.body.category,
@@ -128,7 +138,7 @@ const controllerProduct = {
                 price: req.body.price,
                 rating: req.body.rating,
                 numberOfReviews: req.body.numberOfReviews,  
-                images: req.file ? req.filename : existingProduct.images,
+                images: imageDB,
                 stock: req.body.stock
             };
 

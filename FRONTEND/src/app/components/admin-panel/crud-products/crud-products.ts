@@ -15,7 +15,7 @@ export class CrudProducts {
   showForm = signal<boolean>(false);
   mode = signal<'crear' | 'editar'>('crear'); 
   selectedFile = signal<File | null>(null);
-  imageBaseURL = 'http://localhost:3002/images/';
+  imageBaseURL = '';
   productForm: Products = this.resetProducts();
 
   ngOnInit(): void {
