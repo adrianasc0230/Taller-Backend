@@ -1,4 +1,4 @@
-<div class="container text-center mt-5">
+<!-- <div class="container text-center mt-5">
   <div class="row">
     <div class="col">
       <div class="card" style="width: 18rem;">
@@ -163,9 +163,163 @@
     </div>
   </div>
 </div>
-<!-- <button type="button" class="btn btn-success">Cerrar sesión</button> -->
+<button type="button" class="btn btn-success">Cerrar sesión</button>
 <div class="d-grid gap-2 px-4 py-5">
   <button (click)="logout()"  class="btn btn-success btn-lg flex-fill" type="button" >Cerrar sesión</button>
+</div> -->
+
+<!-- Sección: Productos de Salud y bienestar -->
+<div class="mb-5">
+  <h3 class="mb-3 border-bottom pb-2">Productos de Salud y bienestar</h3>
+
+  <div class="row g-3">
+    @for (prod of productosDeSaludyBienestar(); track prod._id) {
+      <div class="col-md-4">
+        <div class="card h-100 shadow-sm">
+          <img
+            [src]="imageBaseUrl + prod.images"
+            class="card-img-top p-2 object-fit-contain"
+            style="height: 200px;"
+            [alt]="prod.product">
+          <div class="card-body">
+            <h5 class="card-title">{{ prod.product }}</h5>
+            <p class="card-text text-muted">{{ prod.category }}</p>
+            <p class="mb-1"><strong>Description:</strong> {{ prod.description }}</p>
+            <p class="fw-bold text-primary fs-5 mb-0">${{ prod.price }}</p>
+            <p class="fw-bold text-success fs-5 mb-0">Unidades disponibles:{{ prod.stock }}</p>
+            <!-- <p class="fw-bold text-primary fs-5 mb-0">${{ prod.rating }}</p>
+            <p class="fw-bold text-primary fs-5 mb-0">${{ prod.numberOfReviews}}</p> -->
+            <p class="text-muted small">⭐ {{ prod.rating }} ({{ prod.numberOfReviews }} reseñas)</p>
+          </div>
+        </div>
+      </div>
+    } @empty {
+      <p class="text-muted">No hay productos en la categoría .</p>
+    }
+  </div>
+</div>
+
+<!-- Sección: Productos Nutricion Animal -->
+
+<div class="mb-5">
+  <h3 class="mb-3 border-bottom pb-2">Productos de Nutrición animal</h3>
+
+  <div class="row g-3">
+    @for (prod of productosDeNutricionAnimal(); track prod._id) {
+      <div class="col-md-4">
+        <div class="card h-100 shadow-sm">
+          <img
+            [src]="imageBaseUrl + prod.images"
+            class="card-img-top p-2 object-fit-contain"
+            style="height: 200px;"
+            [alt]="prod.product">
+          <div class="card-body">
+            <h5 class="card-title">{{ prod.product }}</h5>
+            <p class="card-text text-muted">{{ prod.category }}</p>
+            <p class="mb-1"><strong>Description:</strong> {{ prod.description }}</p>
+            <p class="fw-bold text-primary fs-5 mb-0">${{ prod.price }}</p>
+            <p class="fw-bold text-success fs-5 mb-0">Unidades disponibles:{{ prod.stock }}</p>
+            <!-- <p class="fw-bold text-primary fs-5 mb-0">${{ prod.rating }}</p>
+            <p class="fw-bold text-primary fs-5 mb-0">${{ prod.numberOfReviews}}</p> -->
+            <p class="text-muted small">⭐ {{ prod.rating }} ({{ prod.numberOfReviews }} reseñas)</p>
+          </div>
+        </div>
+      </div>
+    } @empty {
+      <p class="text-muted">No hay productos en la categoría .</p>
+    }
+  </div>
+</div>
+
+<!-- Sección: Productos de Equipos Agrícolas -->
+
+<div class="mb-5">
+  <h3 class="mb-3 border-bottom pb-2">Productos de  Equipos Agrícolas</h3>
+
+  <div class="row g-3">
+    @for (prod of productosDeEquiposAgricolas(); track prod._id) {
+      <div class="col-md-4">
+        <div class="card h-100 shadow-sm">
+          <img
+            [src]="imageBaseUrl + prod.images"
+            class="card-img-top p-2 object-fit-contain"
+            style="height: 200px;"
+            [alt]="prod.product">
+          <div class="card-body">
+            <h5 class="card-title">{{ prod.product }}</h5>
+            <p class="card-text text-muted">{{ prod.category }}</p>
+            <p class="mb-1"><strong>Description:</strong> {{ prod.description }}</p>
+            <p class="fw-bold text-primary fs-5 mb-0">${{ prod.price }}</p>
+            <p class="fw-bold text-success fs-5 mb-0">Unidades disponibles:{{ prod.stock }}</p>
+            <!-- <p class="fw-bold text-primary fs-5 mb-0">${{ prod.rating }}</p>
+            <p class="fw-bold text-primary fs-5 mb-0">${{ prod.numberOfReviews}}</p> -->
+            <p class="text-muted small">⭐ {{ prod.rating }} ({{ prod.numberOfReviews }} reseñas)</p>
+          </div>
+        </div>
+      </div>
+    } @empty {
+      <p class="text-muted">No hay productos en la categoría .</p>
+    }
+  </div>
 </div>
 
 
+<!-- Sección: productos De Semillas y Fertilizantes -->
+
+<div class="mb-5">
+  <h3 class="mb-3 border-bottom pb-2">Productos De Semillas y Fertilizantes</h3>
+
+  <div class="row g-3">
+    @for (prod of productosDeSemillasyFertilizantes(); track prod._id) {
+      <div class="col-md-4">
+        <div class="card h-100 shadow-sm">
+          <img
+            [src]="imageBaseUrl + prod.images"
+            class="card-img-top p-2 object-fit-contain"
+            style="height: 200px;"
+            [alt]="prod.product">
+          <div class="card-body">
+            <h5 class="card-title">{{ prod.product }}</h5>
+            <p class="card-text text-muted">{{ prod.category }}</p>
+            <p class="mb-1"><strong>Description:</strong> {{ prod.description }}</p>
+            <p class="fw-bold text-primary fs-5 mb-0">${{ prod.price }}</p>
+            <p class="fw-bold text-success fs-5 mb-0">Unidades disponibles: {{ prod.stock }}</p>
+            <!-- <p class="fw-bold text-primary fs-5 mb-0">${{ prod.rating }}</p>
+            <p class="fw-bold text-primary fs-5 mb-0">${{ prod.numberOfReviews}}</p> -->
+            <p class="text-muted small">⭐ {{ prod.rating }} ({{ prod.numberOfReviews }} reseñas)</p>
+          </div>
+        </div>
+      </div>
+    } @empty {
+      <p class="text-muted">No hay productos en la categoría .</p>
+    }
+  </div>
+</div>
+
+
+
+<!-- <div class="mb-5">
+  <h3 class="mb-3 border-bottom pb-2">Sombrillas</h3>
+
+  <div class="row g-3">
+    @for (prod of productosSombrillas(); track prod._id) {
+      <div class="col-md-4">
+        <div class="card h-100 shadow-sm">
+          <img
+            [src]="imageBaseURL + prod.imagen"
+            class="card-img-top p-2 object-fit-contain"
+            style="height: 200px;"
+            [alt]="prod.modelo">
+          <div class="card-body">
+            <h5 class="card-title">{{ prod.modelo }}</h5>
+            <p class="card-text text-muted">{{ prod.descripcion }}</p>
+            <p class="mb-1"><strong>Color:</strong> {{ prod.color }}</p>
+            <p class="fw-bold text-primary fs-5 mb-0">${{ prod.precio }}</p>
+          </div>
+        </div>
+      </div>
+    } @empty {
+      <p class="text-muted">No hay productos en la categoría Sombrillas.</p>
+    }
+  </div>
+</div> -->
