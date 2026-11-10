@@ -70,11 +70,11 @@
     <table>
         <thead>
             <tr>
+                <th>Imagen</th>
                 <th>Producto</th>
                 <th>Categoria</th>
                 <th>Descripcion</th>
                 <th>Precio</th>
-                <th>Imagen</th>
                 <th>rating</th>
                 <th>Numero de reseñas</th>
                 <th>stock</th>
@@ -84,7 +84,7 @@
             @for(prod of  products(); track prod._id){
                 <tr>
                     <td>
-                        <img [src]="imageBaseURL + prod.images"  width="80" class="rounded" alt="Producto">
+                        <img [src]="getImageUrl(prod.images)" width="80" class="rounded" [alt]="prod.product">
                     </td>
                     <td>{{prod.product}}</td>
                     <td><span class="badge bg-secondary">{{prod.category}}</span></td>
