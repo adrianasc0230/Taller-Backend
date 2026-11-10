@@ -5,7 +5,7 @@ const schemaProduct = new Schema({
         type: String,
         required: true,
         trim: true,
-        match: [/^[a-zA-ZÀ-ÿ\s]+$/, "producto invalido"]
+        match: [/^[a-zA-ZÀ-ÿ0-9\s.,\-+/*()]+$/, "producto invalido"]
     }, 
 
     category:{
