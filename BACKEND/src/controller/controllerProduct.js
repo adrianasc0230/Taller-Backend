@@ -1,56 +1,50 @@
 import { uploadSingleImage } from "../middleware/uploadImage.js";
 import modelProduct from "../models/modelProduct.js";
-import fs from "fs";
-import path from "path";
+import { subirImagen, borrarImagen } from "../ayudas/cloudinary.js";
 
 import {generarToken, validarToken} from "../ayudas/funciones.js";
 
 const controllerProduct = {
-    productCreate: async (req , res)=>{
-        
+    productCreate: async (req, res) => {
+    uploadSingleImage(req, res, async (error) => {
         try {
-            uploadSingleImage(req,res, async(error)=>{
-                if(error){
-                    console.log(error);
-                    res.json({
-                        message: 'Ocurrio un error cargando la imagen.',
-                        data:error,
-                    });
-                }
-                console.log(req);
-        /* const decodificado = await validarToken(req.body.token);
-            if(decodificado.rol != 'admin')
-            {
-                res.json({
-                                message:`Rol no valido para operación`,
-                                data: null,
-                
-                            });
-            } */
-                const newProduct = new modelProduct({
-                    product: req.body.product, 
-                    category: req.body.category,
-                    description: req.body.description,
-                    price: req.body.price,
-                    rating: req.body.rating,
-                    numberOfReviews: req.body.numberOfReviews,  
-                    images: req.file.filename,
-                    stock: req.body.stock
+            if (error) {
+                return res.status(400).json({
+                    message: 'Ocurrio un error cargando la imagen.',
+                    data: error.message,
                 });
-                
-                const saveProduct = await newProduct.save();
-                    res.json({
-                        message:'Producto guardado',
-                        data: saveProduct,
-                    });
-            })
-        } catch (error) {
-            res.json({
-                message:'Ocurrio un error al guardar el producto',
-                data: error,
+            }
+            if (!req.file) {
+                return res.status(400).json({
+                    message: 'La imagen es obligatoria',
+                    data: null,
+                });
+            }
+
+            const resultado = await subirImagen(req.file.buffer);
+
+            const newProduct = new modelProduct({
+                product: req.body.product,
+                category: req.body.category,
+                description: req.body.description,
+                price: req.body.price,
+                rating: req.body.rating,
+                numberOfReviews: req.body.numberOfReviews,
+                images: resultado.secure_url,
+                stock: req.body.stock
+            });
+
+            const saveProduct = await newProduct.save();
+            res.json({ message: 'Producto guardado', data: saveProduct });
+        } catch (err) {
+            console.error(err.message);
+            res.status(400).json({
+                message: 'Error al guardar el producto',
+                data: err.message,
             });
         }
-    },
+    });
+},
     readProductById : async(req,res)=>{
         try {
             const productFoundById = await modelProduct.findById(req.params.id);
@@ -86,109 +80,80 @@ const controllerProduct = {
         }
     },
 
-    productUpdate: async ( req, res) => {
-        try {
-            const { id } = req.params;
-            /* const decodificado = await validarToken(req.body.token);
-            if(decodificado.rol != 'admin')
-            {
-                res.json({
-                                message:`Rol no valido para operación`,
-                                data: null,
-                
-                            });
-            } */
+productUpdate: async (req, res) => {
+    try {
+        const { id } = req.params;
 
-            const existingProduct = await modelProduct.findById(id);
-            if (!existingProduct) {
-                if (req.file) {
-                    fs.unlinkSync(req.file.path);
-                }
-
-                return res.json({
-                    message: 'Producto no encontrado',
-                    data: null,
-                });
-            }
-
-            if ( req.file){
-                if(existingProduct.images) {
-                    const oldImagesPath = path.join('images', existingProduct.images);
-
-                    if (fs.existsSync(oldImagesPath)) {
-                        fs.unlinkSync(oldImagesPath);
-                    }
-                }
-            }
-
-            const newData = {
-                product: req.body.product, 
-                category: req.body.category,
-                description: req.body.description,
-                price: req.body.price,
-                rating: req.body.rating,
-                numberOfReviews: req.body.numberOfReviews,  
-                images: req.file ? req.filename : existingProduct.images,
-                stock: req.body.stock
-            };
-
-            const updatedProduct = await modelProduct.findByIdAndUpdate(
-                id,
-                newData,
-                { new : true}
-            );
-
-            return res.json({
-                message: 'Producto actualizado exitosamente.',
-                data: updatedProduct,
-            });
-
-        } catch (error) {
-            res.json({
-                message: 'Ocurrio un error al actualizar el producto.',
-                data: error.message || error,
+        const existingProduct = await modelProduct.findById(id);
+        if (!existingProduct) {
+            return res.status(404).json({
+                message: 'Producto no encontrado',
+                data: null,
             });
         }
-    },
-    productDelete : async (req, res)=> {
-        try {
-            console.error(req);
-            /* const decodificado = await validarToken(req.params.token);
-            if(decodificado.rol != 'admin')
-            {
-                res.json({
-                                message:`Rol no valido para operación`,
-                                data: null,
-                
-                            });
-            } */
-            const productDelete = await modelProduct.findByIdAndDelete(req.params.id);
 
-            if(!productDelete){
-            return res.json({
-                    message:'producto no encontrado',
-                    data:null,
-                });
-            }
-            if(productDelete.images){
-                const oldImages = path.join('imagenes',productDelete.images);
-                
-                if(fs.existsSync(oldImages)){
-                    fs.unlinkSync(oldImages);
-                }
-            }
-            res.json({
-                message:'producto eliminado exitosamente',
-                data: productDelete,
-            });
-        } catch (error) {
-            console.log(error);
-            res.json({
-                message:'error al eliminar el producto',
-                data: error,
-            });
+        let nuevaImagen = existingProduct.images;
+        if (req.file) {
+            const resultado = await subirImagen(req.file.buffer);
+            await borrarImagen(existingProduct.images);
+            nuevaImagen = resultado.secure_url;
         }
+
+        const newData = {
+            product: req.body.product,
+            category: req.body.category,
+            description: req.body.description,
+            price: req.body.price,
+            rating: req.body.rating,
+            numberOfReviews: req.body.numberOfReviews,
+            images: nuevaImagen,
+            stock: req.body.stock
+        };
+
+        const updatedProduct = await modelProduct.findByIdAndUpdate(
+            id,
+            newData,
+            { new: true, runValidators: true }
+        );
+
+        return res.json({
+            message: 'Producto actualizado exitosamente.',
+            data: updatedProduct,
+        });
+
+    } catch (error) {
+        console.error(error.message);
+        res.status(400).json({
+            message: 'Ocurrio un error al actualizar el producto.',
+            data: error.message || error,
+        });
     }
+},
+productDelete: async (req, res) => {
+    try {
+        const productDelete = await modelProduct.findByIdAndDelete(req.params.id);
+
+        if (!productDelete) {
+            return res.status(404).json({
+                message: 'Producto no encontrado',
+                data: null,
+            });
+        }
+
+        await borrarImagen(productDelete.images);
+
+        res.json({
+            message: 'Producto eliminado exitosamente',
+            data: productDelete,
+        });
+    } catch (error) {
+        console.error(error.message);
+        res.status(500).json({
+            message: 'Error al eliminar el producto',
+            data: error.message,
+        });
+    }
+}
 }
 
 
