@@ -9,13 +9,13 @@ import { Products } from '../../../interfaces/products';
   styleUrl: './crud-products.css',
   templateUrl: './crud-products.html',
 })
-export class CrudProducts  {
+export class CrudProducts {
   private productsService = inject (ProductsService);
   products = signal <Products[]>([]);
   showForm = signal<boolean>(false);
   mode = signal<'crear' | 'editar'>('crear'); 
   selectedFile = signal<File | null>(null);
-  imageBaseURL = 'http://localhost:3002/images/';
+  imageBaseURL = '';
   productForm: Products = this.resetProducts();
 
   ngOnInit(): void {
@@ -30,10 +30,6 @@ export class CrudProducts  {
       error: (err) => console.error('Error al cargar los productos', err)
     });
   }
-  getImageUrl(images: string): string {
-  if (!images) return '';
-  return images.startsWith('http') ? images : this.imageBaseURL + images;
-}
   onFileSelected(event: Event): void {
     const input = event.target as HTMLInputElement;
     if (input.files && input.files.length > 0){
