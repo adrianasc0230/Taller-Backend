@@ -3,30 +3,7 @@ import { Router } from '@angular/router';
 import { ProductsService } from '../../services/products-service';
 import { Products } from '../../interfaces/products';
 
-/* @Component({
-  imports: [],
-  selector: 'app-shopping',
-  styleUrl: './shopping.css',
-  templateUrl: './shopping.html',
-})
-export class Shopping {
-  constructor(
-    private router: Router,
-    private cartService: CartService // <-- Inyectamos el servicio
-  ) {}
-
-  shop() {
-    // Incrementa la signal y actualiza el localStorage
-    this.cartService.sumarClick();
-  }
-
-  logout() {
-    localStorage.removeItem('token');
-    this.router.navigate(['/login']);
-  }
-} */
-
-  @Component({
+@Component({
   imports: [],
   selector: 'app-shopping',
   styleUrl: './shopping.css',
@@ -36,45 +13,56 @@ export class Shopping implements OnInit {
   private router = inject(Router);
   private productsService = inject(ProductsService);
 
-  productosDeSaludyBienestar = signal<Products[]>([]);
-  productosDeEquiposAgricolas =signal<Products[]>([]);
-  productosDeSemillasyFertilizantes = signal<Products[]>([]);
-  productosDeNutricionAnimal= signal<Products[]>([]);
+  // En tu clase Shopping dentro de shopping.ts:
 
+logout(): void {
+  localStorage.removeItem('token');
+  this.router.navigate(['/login']);
+}
+
+  productosDeSaludyBienestar = signal<Products[]>([]);
+  productosDeEquiposAgricolas = signal<Products[]>([]);
+  productosDeSemillasyFertilizantes = signal<Products[]>([]);
+  productosDeNutricionAnimal = signal<Products[]>([]);
+
+  // Ojo: en la captura anterior tu backend servía imágenes en /images/users/ o /images/
+  // Asegúrate de que coincida con la ruta estática de tu backend Express
   imageBaseUrl = 'http://localhost:3002/images/';
+
   ngOnInit(): void {
     this.loadSections();
   }
 
-  loadSections(): void{
+  // Función auxiliar para limpiar tildes y mayúsculas
+  private cleanText(text: string | undefined): string {
+    if (!text) return '';
+    return text
+      .toLowerCase()
+      .normalize('NFD')
+      .replace(/[\u0300-\u036f]/g, '')
+      .trim();
+  }
+
+  loadSections(): void {
     this.productsService.getAll().subscribe({
-      next: (all)=>{
+      next: (all: Products[]) => {
         this.productosDeEquiposAgricolas.set(
-          all.filter(prod => prod.category === 'Equipos Agrícolas')
+          all.filter(prod => this.cleanText(prod.category) === 'equipos agricolas')
         );
+
         this.productosDeNutricionAnimal.set(
-          all.filter(prod => prod.category ==='Nutrición Animal')
+          all.filter(prod => this.cleanText(prod.category) === 'nutricion animal')
         );
+
         this.productosDeSaludyBienestar.set(
-          all.filter(prod => prod.category === 'Salud y Bienestar')
+          all.filter(prod => this.cleanText(prod.category) === 'salud y bienestar')
         );
+
         this.productosDeSemillasyFertilizantes.set(
-          all.filter(prod => prod.category === 'Semillas y Fertilizantes')
+          all.filter(prod => this.cleanText(prod.category) === 'semillas y fertilizantes')
         );
       },
-      error:(err) => console.error('Error al cargar productos', err)
+      error: (err) => console.error('Error al cargar productos', err)
     });
   }
-/*   private cart = inject(CartService);
-  constructor(private router: Router) {} */
-
-/*   shop() {
-    this.cart.add();
-  }
-
-  logout() {
-  localStorage.removeItem('token');
-  this.cart.reset();
-  this.router.navigate(['/login']);
-} */
 }

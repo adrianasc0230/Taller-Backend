@@ -129,8 +129,6 @@ const controllerProduct = {
 
             }
 
-            console.log("prueba update");
-            console.log(imageDB);
             const newData = {
                 product: req.body.product, 
                 category: req.body.category,
