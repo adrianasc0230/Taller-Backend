@@ -1,33 +1,58 @@
-<!-- Contenedor general del encabezado de Admin -->
-<div class="container-fluid p-4">
-<div class="d-flex justify-content-between align-items-center border-bottom pb-3 mb-
-4">
-<h2>Bienvenido Admin</h2>
-<!-- ZONA SUPERIOR DERECHA: Foto circular y Nombre -->
-<div class="d-flex align-items-center gap-3">
-<div class="text-end">
-<!-- Mostramos el nombre reactivo con la señal adminName() -->
-<span class="d-block fw-bold text-dark">{{ adminName() }}</span>
-<small class="text-muted">Administrador</small>
-</div>
-<!-- Imagen de perfil circular -->
-<img
-[src]="adminImage()"
-alt="Foto de perfil"
-class="rounded-circle border border-2 border-primary object-fit-cover shadow￾sm"
-style="width: 50px; height: 50px;">
+<!-- Contenedor general del encabezado de Admin con fondo limpio -->
+<div class="container-fluid py-4 px-lg-5 bg-light min-vh-100">
 
-<button (click)="logout()" type="button" class="btn btn-success">Cerrar sesión</button>
+  <!-- Header / Barra superior del panel -->
+  <header class="card border-0 shadow-sm rounded-4 mb-4 bg-white">
+    <div class="card-body p-4 d-flex flex-wrap justify-content-between align-items-center gap-3">
+      
+      <!-- Título y Estado -->
+      <div>
+        <div class="d-flex align-items-center gap-2 mb-1">
+          <span class="badge rounded-pill bg-success-subtle text-success border border-success-subtle px-3 py-1">
+            <i class="bi bi-shield-check me-1"></i> Panel de Administración
+          </span>
+        </div>
+        <h2 class="h3 fw-bold text-dark mb-0">Bienvenido, Admin</h2>
+        <small class="text-muted">Gestiona el inventario, productos y operaciones de Agroanima.</small>
+      </div>
 
-</div>
-</div>
-<!-- Contenido principal de tu panel de administración -->
-<div class="row">
-<div class="col-12">
-<p class="lead">Panel de control de administración activo.</p>
-</div>
-</div>
-    <div>
-    <app-crud-products></app-crud-products>
+      <!-- ZONA SUPERIOR DERECHA: Perfil y Cierre de sesión -->
+      <div class="d-flex align-items-center gap-3">
+        <div class="text-end d-none d-sm-block">
+          <span class="d-block fw-semibold text-dark">{{ adminName() }}</span>
+          <span class="badge bg-secondary-subtle text-secondary small">Administrador</span>
+        </div>
+
+        <!-- Imagen de perfil con borde institucional verde -->
+        <div class="position-relative">
+          <img
+            [src]="adminImage()"
+            alt="Foto de perfil"
+            class="rounded-circle border border-2 border-success object-fit-cover shadow-sm"
+            style="width: 52px; height: 52px;">
+          <!-- Indicador en línea activo -->
+          <span class="position-absolute bottom-0 end-0 p-1 bg-success border border-light rounded-circle">
+            <span class="visually-hidden">En línea</span>
+          </span>
+        </div>
+
+        <div class="vr mx-1 text-muted opacity-25"></div>
+
+        <!-- Botón Salir estilizado -->
+        <button (click)="logout()" type="button" class="btn btn-outline-danger d-flex align-items-center gap-2 rounded-pill px-3 py-2 shadow-sm">
+          <i class="bi bi-box-arrow-right"></i>
+          <span>Cerrar sesión</span>
+        </button>
+      </div>
+
     </div>
+  </header>
+
+  <!-- Tarjeta contenedora para el CRUD de Productos -->
+  <main class="card border-0 shadow-sm rounded-4 bg-white overflow-hidden">
+    <div class="card-body p-4">
+      <app-crud-products></app-crud-products>
+    </div>
+  </main>
+
 </div>
