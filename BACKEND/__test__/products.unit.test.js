@@ -29,7 +29,7 @@ describe('PRUEBA UNITARIA AGROANIMA: ControllerProduct.js',()=>{
         jest.clearAllMocks();
     });
 
-
+//ARRANGE
 
     test('readProducts debe responder message: `El Producto con el ID: fue encontrado', async()=>{
 
@@ -40,13 +40,13 @@ const testProducts =[
 modelProduct.find.mockResolvedValue(testProducts);
  const req ={query:{}};
  const res = {json: jest.fn()};
-
+//ACT (actuar)
 await controllerProduct.readProducts(req, res);
-            //ASSERT (verificar)
-            expect(modelProduct.find).toHaveBeenCalledTimes(1);
-            expect(res.json).toHaveBeenCalledWith({
-                 message: `Productos encontrados exitosamente`,
-                data: testProducts,
+//ASSERT (verificar)
+    expect(modelProduct.find).toHaveBeenCalledTimes(1);
+    expect(res.json).toHaveBeenCalledWith({
+        message: `Productos encontrados exitosamente`,
+        data: testProducts,
             });
 
     });
