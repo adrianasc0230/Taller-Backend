@@ -71,4 +71,131 @@ test('readProduct debe responder message: "No se pudo encontrar los producto" si
     });
 
 });
+
+// Prueba 3 readProductById 
+    test('readProductById debe responder con el producto encontrado', async () => {
+        // ARRANGE (preparar)
+        const productoMock = {
+            _id: 'id556',
+            nombre: 'Concentrado',
+            precio: 50000,
+        };
+        modelProduct.findById.mockResolvedValue(productoMock);
+        const req = { params: { id: 'id556' } };
+        const res = { json: jest.fn() };
+
+        // ACT (actuar)
+        await controllerProduct.readProductById(req, res);
+
+        // ASSERT (verificar)
+        expect(res.json).toHaveBeenCalledWith({
+            message: `El Producto con el ID: ${productoMock._id} fue encontrado`,
+            data: productoMock,
+        });
+    });
+
+    // Prueba 4 readProductById (Catch)
+    test('readProductById debe responder con mensaje de error si falla la bd', async () => {
+        // ARRANGE (preparar)
+        const simulatedError = new Error('Fallo buscando el producto por ID');
+        modelProduct.findById.mockRejectedValue(simulatedError);
+        const req = { params: { id: 'id556' } };
+        const res = { json: jest.fn() };
+
+        // ACT (actuar)
+        await controllerProduct.readProductById(req, res);
+
+        // ASSERT (verificar)
+        expect(res.json).toHaveBeenCalledWith({
+            message: `Ocurrió un error encontrando el producto con el ID:${req.params.id}`,
+            data: simulatedError,
+        });
+    });
+
+    // Prueba 5 productUpdate (Camino feliz)
+    test('productUpdate debe actualizar el producto exitosamente', async () => {
+        // ARRANGE
+        const productoExistente = {
+            _id: 'id556',
+            product: 'Concentrado viejo',
+            images: 'img_vieja.png',
+        };
+        const productoActualizado = {
+            _id: 'id556',
+            product: 'Concentrado nuevo',
+            category: 'alimento',
+            description: 'Para perros',
+            price: 60000,
+            rating: 5,
+            numberOfReviews: 10,
+            images: 'img_vieja.png',
+            stock: 20,
+        };
+
+        modelProduct.findById.mockResolvedValue(productoExistente);
+        modelProduct.findByIdAndUpdate.mockResolvedValue(productoActualizado);
+
+        const req = {
+            params: { id: 'id556' },
+            body: {
+                product: 'Concentrado nuevo',
+                category: 'alimento',
+                description: 'Para perros',
+                price: 60000,
+                rating: 5,
+                numberOfReviews: 10,
+                stock: 20,
+            },
+        };
+        const res = { json: jest.fn() };
+
+        // ACT
+        await controllerProduct.productUpdate(req, res);
+
+        // ASSERT
+        expect(res.json).toHaveBeenCalledWith({
+            message: 'Producto actualizado exitosamente.',
+            data: productoActualizado,
+        });
+    });
+
+    // Prueba 6 productUpdate (Producto no encontrado)
+    test('productUpdate debe responder "Producto no encontrado" si no existe el id', async () => {
+        // ARRANGE
+        modelProduct.findById.mockResolvedValue(null);
+        const req = { params: { id: 'id999' }, body: {} };
+        const res = { json: jest.fn() };
+
+        // ACT
+        await controllerProduct.productUpdate(req, res);
+
+        // ASSERT
+        expect(res.json).toHaveBeenCalledWith({
+            message: 'Producto no encontrado',
+            data: null,
+        });
+    });
+
+    // Prueba 7 productUpdate (Catch)
+    test('productUpdate debe responder con mensaje de error si falla la bd', async () => {
+        // ARRANGE
+        const simulatedError = new Error('Fallo actualizando el producto');
+        modelProduct.findById.mockRejectedValue(simulatedError);
+        const req = { params: { id: 'id556' }, body: {} };
+        const res = { json: jest.fn() };
+
+        // ACT
+        await controllerProduct.productUpdate(req, res);
+
+        // ASSERT
+        expect(res.json).toHaveBeenCalledWith({
+            message: 'Ocurrio un error al actualizar el producto.',
+            data: simulatedError.message,
+        });
+    });
+
+    
+
+
+
 });
