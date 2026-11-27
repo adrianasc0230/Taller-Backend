@@ -194,7 +194,61 @@ test('readProduct debe responder message: "No se pudo encontrar los producto" si
         });
     });
 
-    
+    // Prueba 8 productDelete (Camino feliz)
+    test('productDelete debe eliminar el producto exitosamente', async () => {
+        // ARRANGE
+        const productoEliminado = {
+            _id: 'id556',
+            product: 'Concentrado',
+        };
+        modelProduct.findByIdAndDelete.mockResolvedValue(productoEliminado);
+        const req = { params: { id: 'id556' } };
+        const res = { json: jest.fn() };
+
+        // ACT
+        await controllerProduct.productDelete(req, res);
+
+        // ASSERT
+        expect(res.json).toHaveBeenCalledWith({
+            message: 'producto eliminado exitosamente',
+            data: productoEliminado,
+        });
+    });
+
+    // Prueba 9 productDelete (Producto no encontrado)
+    test('productDelete debe responder "producto no encontrado" si no existe el id', async () => {
+        // ARRANGE
+        modelProduct.findByIdAndDelete.mockResolvedValue(null);
+        const req = { params: { id: 'id999' } };
+        const res = { json: jest.fn() };
+
+        // ACT
+        await controllerProduct.productDelete(req, res);
+
+        // ASSERT
+        expect(res.json).toHaveBeenCalledWith({
+            message: 'producto no encontrado',
+            data: null,
+        });
+    });
+
+    // Prueba 10 productDelete (Catch)
+    test('productDelete debe responder con mensaje de error si falla la bd', async () => {
+        // ARRANGE
+        const simulatedError = new Error('Fallo eliminando el producto');
+        modelProduct.findByIdAndDelete.mockRejectedValue(simulatedError);
+        const req = { params: { id: 'id556' } };
+        const res = { json: jest.fn() };
+
+        // ACT
+        await controllerProduct.productDelete(req, res);
+
+        // ASSERT
+        expect(res.json).toHaveBeenCalledWith({
+            message: 'error al eliminar el producto',
+            data: simulatedError,
+        });
+    });
 
 
 

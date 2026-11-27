@@ -23,30 +23,30 @@
         <div class='clearfix'>
             
             <div class='fl pad1y space-right2'>
-                <span class="strong">41.5% </span>
+                <span class="strong">58.49% </span>
                 <span class="quiet">Statements</span>
-                <span class='fraction'>22/53</span>
-            </div>
-        
-            
-            <div class='fl pad1y space-right2'>
-                <span class="strong">33.33% </span>
-                <span class="quiet">Branches</span>
-                <span class='fraction'>6/18</span>
+                <span class='fraction'>31/53</span>
             </div>
         
             
             <div class='fl pad1y space-right2'>
                 <span class="strong">50% </span>
-                <span class="quiet">Functions</span>
-                <span class='fraction'>3/6</span>
+                <span class="quiet">Branches</span>
+                <span class='fraction'>9/18</span>
             </div>
         
             
             <div class='fl pad1y space-right2'>
-                <span class="strong">41.5% </span>
+                <span class="strong">66.66% </span>
+                <span class="quiet">Functions</span>
+                <span class='fraction'>4/6</span>
+            </div>
+        
+            
+            <div class='fl pad1y space-right2'>
+                <span class="strong">58.49% </span>
                 <span class="quiet">Lines</span>
-                <span class='fraction'>22/53</span>
+                <span class='fraction'>31/53</span>
             </div>
         
             
@@ -61,7 +61,7 @@
             </div>
         </template>
     </div>
-    <div class='status-line low'></div>
+    <div class='status-line medium'></div>
     <pre><table class="coverage">
 <tr><td class="line-count quiet"><a name='L1'></a><a href='#L1'>1</a>
 <a name='L2'></a><a href='#L2'>2</a>
@@ -426,39 +426,39 @@
 <span class="cline-any cline-neutral">&nbsp;</span>
 <span class="cline-any cline-neutral">&nbsp;</span>
 <span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-yes">3x</span>
+<span class="cline-any cline-yes">3x</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-yes">3x</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-yes">2x</span>
+<span class="cline-any cline-yes">1x</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-yes">1x</span>
+<span class="cline-any cline-no">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
 <span class="cline-any cline-no">&nbsp;</span>
 <span class="cline-any cline-no">&nbsp;</span>
 <span class="cline-any cline-neutral">&nbsp;</span>
 <span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-yes">1x</span>
 <span class="cline-any cline-neutral">&nbsp;</span>
 <span class="cline-any cline-neutral">&nbsp;</span>
 <span class="cline-any cline-neutral">&nbsp;</span>
 <span class="cline-any cline-neutral">&nbsp;</span>
-<span class="cline-any cline-neutral">&nbsp;</span>
-<span class="cline-any cline-neutral">&nbsp;</span>
-<span class="cline-any cline-neutral">&nbsp;</span>
-<span class="cline-any cline-no">&nbsp;</span>
-<span class="cline-any cline-neutral">&nbsp;</span>
-<span class="cline-any cline-no">&nbsp;</span>
-<span class="cline-any cline-no">&nbsp;</span>
-<span class="cline-any cline-neutral">&nbsp;</span>
-<span class="cline-any cline-neutral">&nbsp;</span>
-<span class="cline-any cline-neutral">&nbsp;</span>
-<span class="cline-any cline-neutral">&nbsp;</span>
-<span class="cline-any cline-no">&nbsp;</span>
-<span class="cline-any cline-no">&nbsp;</span>
-<span class="cline-any cline-neutral">&nbsp;</span>
-<span class="cline-any cline-no">&nbsp;</span>
-<span class="cline-any cline-no">&nbsp;</span>
-<span class="cline-any cline-neutral">&nbsp;</span>
-<span class="cline-any cline-neutral">&nbsp;</span>
-<span class="cline-any cline-no">&nbsp;</span>
-<span class="cline-any cline-neutral">&nbsp;</span>
-<span class="cline-any cline-neutral">&nbsp;</span>
-<span class="cline-any cline-neutral">&nbsp;</span>
-<span class="cline-any cline-neutral">&nbsp;</span>
-<span class="cline-any cline-no">&nbsp;</span>
-<span class="cline-any cline-no">&nbsp;</span>
+<span class="cline-any cline-yes">1x</span>
+<span class="cline-any cline-yes">1x</span>
 <span class="cline-any cline-neutral">&nbsp;</span>
 <span class="cline-any cline-neutral">&nbsp;</span>
 <span class="cline-any cline-neutral">&nbsp;</span>
@@ -627,9 +627,9 @@ const controllerProduct = {
             });
         }
     },
-    productDelete : <span class="fstat-no" title="function not covered" >as</span>ync (req, res)=&gt; {
-<span class="cstat-no" title="statement not covered" >        try {</span>
-<span class="cstat-no" title="statement not covered" >            console.error(req);</span>
+    productDelete : async (req, res)=&gt; {
+        try {
+            console.error(req);
             /* const decodificado = await validarToken(req.params.token);
             if(decodificado.rol != 'admin')
             {
@@ -639,28 +639,28 @@ const controllerProduct = {
                 
                             });
             } */
-            const productDelete = <span class="cstat-no" title="statement not covered" >await modelProduct.findByIdAndDelete(req.params.id);</span>
+            const productDelete = await modelProduct.findByIdAndDelete(req.params.id);
 &nbsp;
-<span class="cstat-no" title="statement not covered" >            if(!productDelete){</span>
-<span class="cstat-no" title="statement not covered" >            return res.json({</span>
+            if(!productDelete){
+            return res.json({
                     message:'producto no encontrado',
                     data:null,
                 });
             }
-<span class="cstat-no" title="statement not covered" >            if(productDelete.images){</span>
+            <span class="missing-if-branch" title="if path not taken" >I</span>if(productDelete.images){
                 const oldImages = <span class="cstat-no" title="statement not covered" >path.join('imagenes',productDelete.images);</span>
                 
 <span class="cstat-no" title="statement not covered" >                if(fs.existsSync(oldImages)){</span>
 <span class="cstat-no" title="statement not covered" >                    fs.unlinkSync(oldImages);</span>
                 }
             }
-<span class="cstat-no" title="statement not covered" >            res.json({</span>
+            res.json({
                 message:'producto eliminado exitosamente',
                 data: productDelete,
             });
         } catch (error) {
-<span class="cstat-no" title="statement not covered" >            console.log(error);</span>
-<span class="cstat-no" title="statement not covered" >            res.json({</span>
+            console.log(error);
+            res.json({
                 message:'error al eliminar el producto',
                 data: error,
             });
@@ -676,7 +676,7 @@ export default controllerProduct;</pre></td></tr></table></pre>
             <div class='footer quiet pad2 space-top1 center small'>
                 Code coverage generated by
                 <a href="https://istanbul.js.org/" target="_blank" rel="noopener noreferrer">istanbul</a>
-                at 2026-11-27T02:10:08.506Z
+                at 2026-11-27T02:30:05.361Z
             </div>
         <script src="../../prettify.js"></script>
         <script>
